@@ -11,20 +11,20 @@ import java.util.List;
 @RequestMapping("vaccine")
 public class VaccineController {
 
-    private final VaccineServ vaccineServ;
+    private final VaccineService vaccineService;
 
-    public VaccineController(VaccineServ vaccineServ) {
-        this.vaccineServ = vaccineServ;
+    public VaccineController(VaccineService vaccineService) {
+        this.vaccineService = vaccineService;
     }
 
     @GetMapping
     public List<VaccineDTO> getAllVaccines(){
-        return vaccineServ.findAll();
+        return vaccineService.findAll();
     }
 
-    @GetMapping(params = "vaxName")
+    @GetMapping("/")
     public VaccineDTO getByResearchName(@RequestParam final String vaxName){
-        return vaccineServ.findVaccineByResearchName(vaxName);
+        return vaccineService.findVaccineByResearchName(vaxName);
     }
 
 }
