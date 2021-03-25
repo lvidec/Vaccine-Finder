@@ -3,6 +3,7 @@ package hr.tvz.videc.vaxapp;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class VaccineRepo implements VaccineRepository {
@@ -20,5 +21,10 @@ public class VaccineRepo implements VaccineRepository {
     @Override
     public Optional<Vaccine> findVaccineByResearchName(String researchName) {
         return vaccineList.stream().filter(x -> Objects.equals(x.getVaxName(), researchName)).findAny();
+    }
+
+    @Override
+    public List<Vaccine> findVaccineByWarehouseDosses(long requestedWarehouseDosses) {
+        return vaccineList.stream().filter(x -> x.getWarehouseDoses() > requestedWarehouseDosses).collect(Collectors.toList());
     }
 }

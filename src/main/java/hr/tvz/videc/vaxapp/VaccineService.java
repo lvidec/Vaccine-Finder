@@ -8,4 +8,6 @@ public interface VaccineService {
     List<VaccineDTO> findAll();
 
     VaccineDTO findVaccineByResearchName(String researchName);
+
+    List<VaccineDTO> findVaccineByWarehouseDoses(long requestedWarehouseDosses);
 }

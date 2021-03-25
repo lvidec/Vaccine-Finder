@@ -6,9 +6,9 @@ public class Vaccine {
     private String compName;
     private String type;
     private int neededDoses;
-    private int warehouseDoses;
+    private long warehouseDoses;
 
-    public Vaccine(String vaxName, String compName, String type, int neededDoses, int warehouseDoses) {
+    public Vaccine(String vaxName, String compName, String type, int neededDoses, long warehouseDoses) {
         this.vaxName = vaxName;
         this.compName = compName;
         this.type = type;
@@ -32,7 +32,7 @@ public class Vaccine {
         this.neededDoses = neededDoses;
     }
 
-    public void setWarehouseDoses(int warehouseDoses) {
+    public void setWarehouseDoses(long warehouseDoses) {
         this.warehouseDoses = warehouseDoses;
     }
 
@@ -52,7 +52,7 @@ public class Vaccine {
         return neededDoses;
     }
 
-    public int getWarehouseDoses() {
+    public long getWarehouseDoses() {
         return warehouseDoses;
     }
 

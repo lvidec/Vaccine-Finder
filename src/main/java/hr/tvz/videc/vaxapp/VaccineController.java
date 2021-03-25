@@ -22,9 +22,14 @@ public class VaccineController {
         return vaccineService.findAll();
     }
 
-    @GetMapping("/")
+    @GetMapping(params = "vaxName")
     public VaccineDTO getByResearchName(@RequestParam final String vaxName){
         return vaccineService.findVaccineByResearchName(vaxName);
+    }
+
+    @GetMapping(params = "warehouseDosses")
+    public List<VaccineDTO> getByWarehouseDosses(@RequestParam final long warehouseDosses){
+        return vaccineService.findVaccineByWarehouseDoses(warehouseDosses);
     }
 
 }

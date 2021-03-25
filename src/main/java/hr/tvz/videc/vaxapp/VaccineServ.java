@@ -26,6 +26,11 @@ public class VaccineServ implements VaccineService, Serializable {
         return vaccineRepository.findVaccineByResearchName(researchName).map(this::mapVaccineToDTO).orElse(null);
     }
 
+    @Override
+    public List<VaccineDTO> findVaccineByWarehouseDoses(long requestedWarehouseDosses) {
+        return vaccineRepository.findVaccineByWarehouseDosses(requestedWarehouseDosses).stream().map(this::mapVaccineToDTO).collect(Collectors.toList());
+    }
+
     private VaccineDTO mapVaccineToDTO(Vaccine vaccine){
         return new VaccineDTO(vaccine.getVaxName(), vaccine.getNeededDoses());
     }
