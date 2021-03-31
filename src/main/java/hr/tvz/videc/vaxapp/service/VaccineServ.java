@@ -1,10 +1,14 @@
-package hr.tvz.videc.vaxapp;
+package hr.tvz.videc.vaxapp.service;
 
-import org.springframework.context.annotation.Bean;
+import hr.tvz.videc.vaxapp.VaccineCommand;
+import hr.tvz.videc.vaxapp.model.Vaccine;
+import hr.tvz.videc.vaxapp.model.VaccineDTO;
+import hr.tvz.videc.vaxapp.repository.VaccineRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,8 +35,29 @@ public class VaccineServ implements VaccineService, Serializable {
         return vaccineRepository.findVaccineByWarehouseDosses(requestedWarehouseDosses).stream().map(this::mapVaccineToDTO).collect(Collectors.toList());
     }
 
+    @Override
+    public Optional<VaccineDTO> addVaccine(VaccineCommand vaccineCommand) {
+        vaccineRepository.addVaccine(vaccineCommand);
+        return Optional.of(mapVaccineToDTO(vaccineCommand));
+    }
+
+    @Override
+    public Optional<VaccineDTO> updateVaccine(String compName, VaccineCommand vaccineCommand) {
+        vaccineRepository.updateVaccine(compName, vaccineCommand);
+        return Optional.of(mapVaccineToDTO(vaccineCommand));
+    }
+
+    @Override
+    public void deleteVaccine(String vaxName) {
+        vaccineRepository.deleteVaccine(vaxName);
+    }
+
     private VaccineDTO mapVaccineToDTO(Vaccine vaccine){
         return new VaccineDTO(vaccine.getVaxName(), vaccine.getNeededDoses());
+    }
+
+    private VaccineDTO mapVaccineToDTO(VaccineCommand vaccineCommand){
+        return new VaccineDTO(vaccineCommand.getVaxName(), vaccineCommand.getNeededDoses());
     }
 
 }

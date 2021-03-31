@@ -1,5 +1,9 @@
-package hr.tvz.videc.vaxapp;
+package hr.tvz.videc.vaxapp.model;
 
+
+import org.springframework.http.ResponseEntity;
+
+import java.util.Optional;
 
 public class VaccineDTO {
     private String compName;
@@ -33,4 +37,5 @@ public class VaccineDTO {
                 ", neededDoses=" + neededDoses +
                 '}';
     }
+
 }

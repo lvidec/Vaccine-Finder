@@ -1,4 +1,4 @@
-package hr.tvz.videc.vaxapp;
+package hr.tvz.videc.vaxapp.model;
 
 public class Vaccine {
 
