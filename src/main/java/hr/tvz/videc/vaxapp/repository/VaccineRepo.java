@@ -38,7 +38,6 @@ public class VaccineRepo implements VaccineRepository {
         return Optional.of(vaccine);
     }
 
-
     @Override
     public Optional<Vaccine> updateVaccine(String compName, VaccineCommand vaccineCommand) {
         Vaccine vaccineToAdd = new Vaccine(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getType(), vaccineCommand.getNeededDoses(), vaccineCommand.getWarehouseDoses());

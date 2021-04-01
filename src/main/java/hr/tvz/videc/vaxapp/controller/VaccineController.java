@@ -26,8 +26,8 @@ public class VaccineController {
         return vaccineService.findAll();
     }
 
-    @GetMapping(params = "vaxName")
-    public VaccineDTO getByResearchName(@RequestParam final String vaxName){
+    @GetMapping("/{vaxName}")
+    public VaccineDTO getByResearchName(@PathVariable final String vaxName){
         return vaccineService.findVaccineByResearchName(vaxName);
     }
 
