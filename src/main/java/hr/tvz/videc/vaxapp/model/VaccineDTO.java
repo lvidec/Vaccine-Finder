@@ -1,15 +1,13 @@
 package hr.tvz.videc.vaxapp.model;
 
 
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
-
 public class VaccineDTO {
+    private String vaxName;
     private String compName;
     private int neededDoses;
 
-    public VaccineDTO(String compName, int neededDoses) {
+    public VaccineDTO(String vaxName, String compName, int neededDoses) {
+        this.vaxName = vaxName;
         this.compName = compName;
         this.neededDoses = neededDoses;
     }
@@ -22,6 +20,8 @@ public class VaccineDTO {
         return neededDoses;
     }
 
+    public String getVaxName() { return vaxName; }
+
     public void setCompName(String compName) {
         this.compName = compName;
     }
@@ -30,12 +30,5 @@ public class VaccineDTO {
         this.neededDoses = neededDoses;
     }
 
-    @Override
-    public String toString() {
-        return "VaccineDTO{" +
-                "compName='" + compName + '\'' +
-                ", neededDoses=" + neededDoses +
-                '}';
-    }
-
+    public void setVaxName(String vaxName) { this.vaxName = vaxName; }
 }

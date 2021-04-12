@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("vaccine")
+@CrossOrigin(origins = "http://localhost:4200")
 public class VaccineController {
 
     private final VaccineService vaccineService;
@@ -57,8 +58,8 @@ public class VaccineController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping
-    public void deleteVaccine(@RequestParam(value = "vaxName") String vaxName){
+    @DeleteMapping("/{vaxName}")
+    public void deleteVaccine(@PathVariable String vaxName){
         vaccineService.deleteVaccine(vaxName);
     }
 
