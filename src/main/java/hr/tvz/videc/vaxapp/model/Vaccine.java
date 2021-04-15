@@ -7,13 +7,15 @@ public class Vaccine {
     private String type;
     private int neededDoses;
     private long warehouseDoses;
+    private SideEffect sideEffect;
 
-    public Vaccine(String vaxName, String compName, String type, int neededDoses, long warehouseDoses) {
+    public Vaccine(String vaxName, String compName, String type, int neededDoses, long warehouseDoses, SideEffect sideEffect) {
         this.vaxName = vaxName;
         this.compName = compName;
         this.type = type;
         this.neededDoses = neededDoses;
         this.warehouseDoses = warehouseDoses;
+        this.sideEffect = sideEffect;
     }
 
     public void setVaxName(String vaxName) {
@@ -56,4 +58,11 @@ public class Vaccine {
         return warehouseDoses;
     }
 
+    public SideEffect getSideEffect() {
+        return sideEffect;
+    }
+
+    public void setSideEffect(SideEffect sideEffect) {
+        this.sideEffect = sideEffect;
+    }
 }

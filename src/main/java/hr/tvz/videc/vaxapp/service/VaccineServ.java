@@ -1,6 +1,7 @@
 package hr.tvz.videc.vaxapp.service;
 
 import hr.tvz.videc.vaxapp.VaccineCommand;
+import hr.tvz.videc.vaxapp.model.SideEffect;
 import hr.tvz.videc.vaxapp.model.Vaccine;
 import hr.tvz.videc.vaxapp.model.VaccineDTO;
 import hr.tvz.videc.vaxapp.repository.VaccineRepository;
@@ -45,6 +46,11 @@ public class VaccineServ implements VaccineService, Serializable {
     public Optional<VaccineDTO> updateVaccine(String compName, VaccineCommand vaccineCommand) {
         vaccineRepository.updateVaccine(compName, vaccineCommand);
         return Optional.of(mapVaccineToDTO(vaccineCommand));
+    }
+
+    @Override
+    public Optional<VaccineDTO> addSideEffect(SideEffect effect) {
+        return Optional.empty();
     }
 
     @Override

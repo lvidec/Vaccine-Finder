@@ -1,6 +1,7 @@
 package hr.tvz.videc.vaxapp.service;
 
 import hr.tvz.videc.vaxapp.VaccineCommand;
+import hr.tvz.videc.vaxapp.model.SideEffect;
 import hr.tvz.videc.vaxapp.model.VaccineDTO;
 
 import java.util.List;
@@ -17,5 +18,8 @@ public interface VaccineService {
 
     Optional<VaccineDTO> updateVaccine(String compName, VaccineCommand vaccineCommand);
 
+    Optional<VaccineDTO> addSideEffect(SideEffect effect);
+
     void deleteVaccine(String vaxName);
+
 }

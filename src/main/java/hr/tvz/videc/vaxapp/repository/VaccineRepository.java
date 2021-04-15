@@ -1,6 +1,7 @@
 package hr.tvz.videc.vaxapp.repository;
 
 import hr.tvz.videc.vaxapp.VaccineCommand;
+import hr.tvz.videc.vaxapp.model.SideEffect;
 import hr.tvz.videc.vaxapp.model.Vaccine;
 import hr.tvz.videc.vaxapp.model.VaccineDTO;
 
