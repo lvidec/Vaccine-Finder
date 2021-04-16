@@ -38,6 +38,8 @@ public class Vaccine {
         this.warehouseDoses = warehouseDoses;
     }
 
+    public void setSideEffect(SideEffect sideEffect) { this.sideEffect = sideEffect; }
+
     public String getVaxName() {
         return vaxName;
     }
@@ -58,11 +60,6 @@ public class Vaccine {
         return warehouseDoses;
     }
 
-    public SideEffect getSideEffect() {
-        return sideEffect;
-    }
+    public SideEffect getSideEffect() { return sideEffect; }
 
-    public void setSideEffect(SideEffect sideEffect) {
-        this.sideEffect = sideEffect;
-    }
 }

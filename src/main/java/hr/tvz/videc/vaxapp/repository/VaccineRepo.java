@@ -23,8 +23,8 @@ public class VaccineRepo implements VaccineRepository {
     }
 
     @Override
-    public Optional<Vaccine> findVaccineByResearchName(String researchName) {
-        return vaccineList.stream().filter(x -> Objects.equals(x.getVaxName(), researchName)).findAny();
+    public Optional<Vaccine> findVaccineByResearchName(String vaxName) {
+        return vaccineList.stream().filter(x -> Objects.equals(x.getVaxName(), vaxName)).findAny();
     }
 
     @Override
@@ -40,9 +40,9 @@ public class VaccineRepo implements VaccineRepository {
     }
 
     @Override
-    public Optional<Vaccine> updateVaccine(String compName, VaccineCommand vaccineCommand) {
+    public Optional<Vaccine> updateVaccine(String vaxName, VaccineCommand vaccineCommand) {
         Vaccine vaccineToAdd = new Vaccine(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getType(), vaccineCommand.getNeededDoses(), vaccineCommand.getWarehouseDoses(), vaccineCommand.getSideEffect());
-        Vaccine vaccineToRemove = vaccineList.stream().filter( x -> x.getCompName().equals(compName)).findFirst().orElseThrow();
+        Vaccine vaccineToRemove = vaccineList.stream().filter( x -> x.getVaxName().equals(vaxName)).findFirst().orElseThrow();
         int index = vaccineList.indexOf(vaccineToRemove);
         vaccineList.set(index, vaccineToAdd);
         System.out.println(vaccineList);

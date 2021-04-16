@@ -47,10 +47,10 @@ public class VaccineController {
             );
     }
 
-    @PutMapping("/{compName}")
-    public ResponseEntity<VaccineDTO> updateVaccine(@PathVariable String compName, @Valid @RequestBody final VaccineCommand vaccineCommand){
+    @PutMapping("/{vaxName}")
+    public ResponseEntity<VaccineDTO> updateVaccine(@PathVariable String vaxName, @Valid @RequestBody final VaccineCommand vaccineCommand){
 //        return new ResponseEntity<VaccineDTO>(new VaccineDTO(vaccineCommand.getCompName(), vaccineCommand.getNeededDoses()), HttpStatus.CREATED);
-        return vaccineService.updateVaccine(compName, vaccineCommand).map(
+        return vaccineService.updateVaccine(vaxName, vaccineCommand).map(
                 vaccineDTO -> ResponseEntity.status(HttpStatus.CREATED).body(vaccineDTO)
             ).orElseGet(
                 () -> ResponseEntity.status(HttpStatus.CONFLICT).build()
