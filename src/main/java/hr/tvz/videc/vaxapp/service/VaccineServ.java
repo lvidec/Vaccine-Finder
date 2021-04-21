@@ -1,7 +1,7 @@
 package hr.tvz.videc.vaxapp.service;
 
 import hr.tvz.videc.vaxapp.VaccineCommand;
-import hr.tvz.videc.vaxapp.model.SideEffect;
+//import hr.tvz.videc.vaxapp.model.SideEffect;
 import hr.tvz.videc.vaxapp.model.Vaccine;
 import hr.tvz.videc.vaxapp.model.VaccineDTO;
 import hr.tvz.videc.vaxapp.repository.VaccineRepository;
@@ -43,15 +43,15 @@ public class VaccineServ implements VaccineService, Serializable {
     }
 
     @Override
-    public Optional<VaccineDTO> updateVaccine(String compName, VaccineCommand vaccineCommand) {
-        vaccineRepository.updateVaccine(compName, vaccineCommand);
+    public Optional<VaccineDTO> updateVaccine(String vaxName, VaccineCommand vaccineCommand) {
+        vaccineRepository.updateVaccine(vaxName, vaccineCommand);
         return Optional.of(mapVaccineToDTO(vaccineCommand));
     }
 
-    @Override
-    public Optional<VaccineDTO> addSideEffect(SideEffect effect) {
-        return Optional.empty();
-    }
+//    @Override
+//    public Optional<VaccineDTO> addSideEffect(SideEffect effect) {
+//        return Optional.empty();
+//    }
 
     @Override
     public void deleteVaccine(String vaxName) {
@@ -59,11 +59,11 @@ public class VaccineServ implements VaccineService, Serializable {
     }
 
     private VaccineDTO mapVaccineToDTO(Vaccine vaccine){
-        return new VaccineDTO(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getNeededDoses(), vaccine.getSideEffect());
+        return new VaccineDTO(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getNeededDoses()/*, vaccine.getSideEffect()*/);
     }
 
     private VaccineDTO mapVaccineToDTO(VaccineCommand vaccineCommand){
-        return new VaccineDTO(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getNeededDoses(), vaccineCommand.getSideEffect());
+        return new VaccineDTO(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getNeededDoses()/*, vaccineCommand.getSideEffect()*/);
     }
 
 }

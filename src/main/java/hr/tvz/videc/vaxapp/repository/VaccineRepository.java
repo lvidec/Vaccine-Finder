@@ -17,7 +17,7 @@ public interface VaccineRepository {
 
     Optional<Vaccine> addVaccine(VaccineCommand vaccineCommand);
 
-    Optional<Vaccine> updateVaccine(String compName, VaccineCommand vaccineCommand);
+    Optional<Vaccine> updateVaccine(String vaxName, VaccineCommand vaccineCommand);
 
 
     void deleteVaccine(String vaxName);

@@ -16,9 +16,9 @@ public interface VaccineService {
 
     Optional<VaccineDTO> addVaccine(VaccineCommand vaccineCommand);
 
-    Optional<VaccineDTO> updateVaccine(String compName, VaccineCommand vaccineCommand);
+    Optional<VaccineDTO> updateVaccine(String vaxName, VaccineCommand vaccineCommand);
 
-    Optional<VaccineDTO> addSideEffect(SideEffect effect);
+//    Optional<VaccineDTO> addSideEffect(SideEffect effect);
 
     void deleteVaccine(String vaxName);
 

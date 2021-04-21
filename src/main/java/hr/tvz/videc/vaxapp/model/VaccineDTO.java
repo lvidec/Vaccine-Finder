@@ -7,11 +7,11 @@ public class VaccineDTO {
     private int neededDoses;
     private SideEffect sideEffect;
 
-    public VaccineDTO(String vaxName, String compName, int neededDoses, SideEffect sideEffect) {
+    public VaccineDTO(String vaxName, String compName, int neededDoses/*, SideEffect sideEffect*/) {
         this.vaxName = vaxName;
         this.compName = compName;
         this.neededDoses = neededDoses;
-        this.sideEffect = sideEffect;
+//        this.sideEffect = sideEffect;
     }
 
     public String getCompName() {
