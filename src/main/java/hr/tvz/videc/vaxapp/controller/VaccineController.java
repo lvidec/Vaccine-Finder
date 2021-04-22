@@ -37,6 +37,11 @@ public class VaccineController {
         return vaccineService.findVaccineByWarehouseDoses(warehouseDosses);
     }
 
+    @GetMapping("/between")
+    public List<VaccineDTO> getVaccinesByNumberOfWarehouseDoses(@RequestParam("min") final long warehouseDossesMin, @RequestParam("max") final long warehouseDosesMax){
+        return vaccineService.findVaccinesByNumberOfWarehouseDoses(warehouseDossesMin, warehouseDosesMax);
+    }
+
     @PostMapping
     public ResponseEntity<VaccineDTO> addVaccine(@Valid @RequestBody final VaccineCommand vaccineCommand){
 //        return new ResponseEntity<VaccineDTO>(new VaccineDTO(vaccineCommand.getCompName(), vaccineCommand.getNeededDoses()), HttpStatus.CREATED);

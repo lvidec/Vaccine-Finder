@@ -86,6 +86,12 @@ public class JdbcVaccineRepository implements VaccineRepository {
     }
 
     @Override
+    public List<Vaccine> findVaccinesByNumberOfWarehouseDoses(long warehouseDosesMin, long warehouseDosesMax) {
+        return new ArrayList<>(jdbc.query("select vaxName, compName, type, neededDoses, warehouseDoses from vaccine where warehouseDoses >= ? and warehouseDoses <= ?",
+                this::mapRowToVaccine, warehouseDosesMin, warehouseDosesMax));
+    }
+
+    @Override
     public void deleteVaccine(String vaxName) {
         jdbc.update("DELETE FROM vaccine WHERE vaxName LIKE ?", vaxName);
     }

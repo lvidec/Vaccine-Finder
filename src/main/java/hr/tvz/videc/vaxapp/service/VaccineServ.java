@@ -48,6 +48,11 @@ public class VaccineServ implements VaccineService, Serializable {
         return Optional.of(mapVaccineToDTO(vaccineCommand));
     }
 
+    @Override
+    public List<VaccineDTO> findVaccinesByNumberOfWarehouseDoses(long warehouseDosesMin, long warehouseDosesMax) {
+        return vaccineRepository.findVaccinesByNumberOfWarehouseDoses(warehouseDosesMin, warehouseDosesMax).stream().map(this::mapVaccineToDTO).collect(Collectors.toList());
+    }
+
 //    @Override
 //    public Optional<VaccineDTO> addSideEffect(SideEffect effect) {
 //        return Optional.empty();

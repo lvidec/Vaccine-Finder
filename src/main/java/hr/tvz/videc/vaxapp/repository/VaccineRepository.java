@@ -19,6 +19,8 @@ public interface VaccineRepository {
 
     Optional<Vaccine> updateVaccine(String vaxName, VaccineCommand vaccineCommand);
 
+    List<Vaccine> findVaccinesByNumberOfWarehouseDoses(long warehouseDosesMin, long warehouseDosesMax);
+
 
     void deleteVaccine(String vaxName);
 }

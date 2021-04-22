@@ -49,6 +49,11 @@ public class VaccineRepo implements VaccineRepository {
     }
 
     @Override
+    public List<Vaccine> findVaccinesByNumberOfWarehouseDoses(long warehouseDosesMin, long warehouseDosesMax) {
+        return vaccineList.stream().filter(x -> x.getWarehouseDoses() >= warehouseDosesMin && x.getWarehouseDoses() <= warehouseDosesMax).collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteVaccine(String vaxName) {
         vaccineList = vaccineList.stream().filter(x -> !x.getVaxName().equals(vaxName)).collect(Collectors.toList());
     }
