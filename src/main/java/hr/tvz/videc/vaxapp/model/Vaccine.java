@@ -1,13 +1,41 @@
 package hr.tvz.videc.vaxapp.model;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Table(name = "Vaccine")
 public class Vaccine {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "vaxName")
     private String vaxName;
+
+    @Column(name = "compName")
     private String compName;
+
+    @Column(name = "type")
     private String type;
+
+    @Column(name = "neededDoses")
     private int neededDoses;
+
+    @Column(name = "warehouseDoses")
     private long warehouseDoses;
-//    private SideEffect sideEffect;
+
+    @ManyToOne
+    @JoinColumn(name = "sideEffectId")
+    private SideEffect sideEffect;
+
+//    @Column(name = "sideEffectId")
+//    @Enumerated(EnumType.STRING)
+//    @JoinTable(name = "SideEffect", joinColumns = @JoinColumn(name = "vaxName"))
+//    @JoinColumn(name = "id")
+//    private Long sideEffectId;
 
     public Vaccine(String vaxName, String compName, String type, int neededDoses, long warehouseDoses/*, SideEffect sideEffect*/) {
         this.vaxName = vaxName;
@@ -40,7 +68,10 @@ public class Vaccine {
         this.warehouseDoses = warehouseDoses;
     }
 
-//    public void setSideEffect(SideEffect sideEffect) { this.sideEffect = sideEffect; }
+    public void setId(Long id) { this.id = id; }
+
+    //    public void setSideEffect(SideEffect sideEffect) { this.sideEffect = sideEffect; }
+
 
     public String getVaxName() {
         return vaxName;
@@ -62,6 +93,24 @@ public class Vaccine {
         return warehouseDoses;
     }
 
+    @Id
+    public Long getId() { return id; }
+
 //    public SideEffect getSideEffect() { return sideEffect; }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vaccine)) return false;
+        Vaccine vaccine = (Vaccine) o;
+        return getNeededDoses() == vaccine.getNeededDoses() && getWarehouseDoses() == vaccine.getWarehouseDoses() && getId().equals(vaccine.getId()) && getVaxName().equals(vaccine.getVaxName()) && getCompName().equals(vaccine.getCompName()) && getType().equals(vaccine.getType());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getVaxName(), getCompName(), getType(), getNeededDoses(), getWarehouseDoses());
+    }
+
 
 }
