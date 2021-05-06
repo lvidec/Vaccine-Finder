@@ -64,11 +64,11 @@ public class VaccineServ implements VaccineService, Serializable {
     }
 
     private VaccineDTO mapVaccineToDTO(Vaccine vaccine){
-        return new VaccineDTO(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getNeededDoses()/*, vaccine.getSideEffect()*/);
+        return new VaccineDTO(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getNeededDoses());
     }
 
     private VaccineDTO mapVaccineToDTO(VaccineCommand vaccineCommand){
-        return new VaccineDTO(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getNeededDoses()/*, vaccineCommand.getSideEffect()*/);
+        return new VaccineDTO(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getNeededDoses());
     }
 
 }

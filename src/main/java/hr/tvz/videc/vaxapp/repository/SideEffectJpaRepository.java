@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface SideEffectJpaRepository extends JpaRepository<SideEffect, Long> {
 
-    @Query(value = "SELECT * FROM SideEffect", nativeQuery = true)
-    List<SideEffect> findAll();
+//    @Query(value = "SELECT * FROM SideEffect", nativeQuery = true)
+    List<SideEffect> findBySideEffectId(Long id);
 
 //    List<SideEffect> findByVaxNameLike(String vaxName);
 

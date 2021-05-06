@@ -2,6 +2,7 @@ package hr.tvz.videc.vaxapp.service;
 
 import hr.tvz.videc.vaxapp.model.SideEffect;
 import hr.tvz.videc.vaxapp.repository.SideEffectJpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Service
 public class SideEffectServ implements SideEffectService {
 
+    @Autowired
     private SideEffectJpaRepository sideEffectJpaRepository;
 
     public SideEffectServ(SideEffectJpaRepository sideEffectJpaRepository){
@@ -19,8 +21,8 @@ public class SideEffectServ implements SideEffectService {
     public SideEffectServ(){}
 
     @Override
-    public List<SideEffect> findAll() {
-        return sideEffectJpaRepository.findAll();
+    public List<SideEffect> findBySideEffectId( Long id) {
+        return sideEffectJpaRepository.findBySideEffectId(id);
     }
 //
 //    @Override

@@ -27,23 +27,18 @@ public class Vaccine {
     @Column(name = "warehouseDoses")
     private long warehouseDoses;
 
-    @ManyToOne
-    @JoinColumn(name = "sideEffectId")
-    private SideEffect sideEffect;
-
 //    @Column(name = "sideEffectId")
 //    @Enumerated(EnumType.STRING)
 //    @JoinTable(name = "SideEffect", joinColumns = @JoinColumn(name = "vaxName"))
 //    @JoinColumn(name = "id")
 //    private Long sideEffectId;
 
-    public Vaccine(String vaxName, String compName, String type, int neededDoses, long warehouseDoses/*, SideEffect sideEffect*/) {
+    public Vaccine(String vaxName, String compName, String type, int neededDoses, long warehouseDoses) {
         this.vaxName = vaxName;
         this.compName = compName;
         this.type = type;
         this.neededDoses = neededDoses;
         this.warehouseDoses = warehouseDoses;
-//        this.sideEffect = sideEffect;
     }
 
     public Vaccine(){}
@@ -70,9 +65,6 @@ public class Vaccine {
 
     public void setId(Long id) { this.id = id; }
 
-    //    public void setSideEffect(SideEffect sideEffect) { this.sideEffect = sideEffect; }
-
-
     public String getVaxName() {
         return vaxName;
     }
@@ -95,8 +87,6 @@ public class Vaccine {
 
     @Id
     public Long getId() { return id; }
-
-//    public SideEffect getSideEffect() { return sideEffect; }
 
 
     @Override

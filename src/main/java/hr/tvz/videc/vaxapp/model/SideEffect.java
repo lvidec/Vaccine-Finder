@@ -20,6 +20,10 @@ public class SideEffect {
     @Column(name = "frequency")
     private float frequency;
 
+    @ManyToOne
+    @JoinColumn(name = "vaccineId")
+    private Vaccine vaccine;
+
     public SideEffect(String shortDesc, String longDesc, float frequency) {
         this.shortDesc = shortDesc;
         this.longDesc = longDesc;

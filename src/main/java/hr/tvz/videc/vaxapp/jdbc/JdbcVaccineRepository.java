@@ -97,11 +97,11 @@ public class JdbcVaccineRepository implements VaccineRepository {
     }
 
     private Vaccine mapCommandToVaccine(VaccineCommand vaccineCommand){
-        return new Vaccine(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getType(), vaccineCommand.getNeededDoses(), vaccineCommand.getWarehouseDoses()/*, vaccineCommand.getSideEffect()*/);
+        return new Vaccine(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getType(), vaccineCommand.getNeededDoses(), vaccineCommand.getWarehouseDoses());
     }
 
     private VaccineCommand mapVaccineToCommand(Vaccine vaccine){
-        return new VaccineCommand(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getType(), vaccine.getNeededDoses(), vaccine.getWarehouseDoses()/*, vaccineCommand.getSideEffect()*/);
+        return new VaccineCommand(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getType(), vaccine.getNeededDoses(), vaccine.getWarehouseDoses());
     }
 
 }

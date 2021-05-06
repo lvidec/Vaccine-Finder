@@ -25,16 +25,12 @@ public class VaccineCommand {
     @Positive(message = "Number of warehouse doses has to be higher than 0!")
     private long warehouseDoses;
 
-//    @NotNull(message = "SideEffects cannot be empty!")
-//    private SideEffect sideEffect;
-
-    public VaccineCommand(@NotBlank(message = "Vaccine name cannot be empty!") String vaxName, @NotBlank(message = "Vaccine company cannot be empty!") String compName, @NotBlank(message = "Vaccine type has to be set to 'mRNA' or 'VIRAL_VECTOR'!") String type, @NotNull(message = "Needed doses cannot be empty!") @Max(message = "Number of shots cannot be more than 3", value = 3) @Positive(message = "Number of shots has to be higher than 0!") int neededDoses, @NotNull(message = "Warehouse number of doses cannot be empty!") @Min(message = "Number of warehouse doses cannot be lower than 100", value = 100) @Positive(message = "Number of warehouse doses has to be higher than 0!") long warehouseDoses/*, SideEffect sideEffect*/) {
+    public VaccineCommand(@NotBlank(message = "Vaccine name cannot be empty!") String vaxName, @NotBlank(message = "Vaccine company cannot be empty!") String compName, @NotBlank(message = "Vaccine type has to be set to 'mRNA' or 'VIRAL_VECTOR'!") String type, @NotNull(message = "Needed doses cannot be empty!") @Max(message = "Number of shots cannot be more than 3", value = 3) @Positive(message = "Number of shots has to be higher than 0!") int neededDoses, @NotNull(message = "Warehouse number of doses cannot be empty!") @Min(message = "Number of warehouse doses cannot be lower than 100", value = 100) @Positive(message = "Number of warehouse doses has to be higher than 0!") long warehouseDoses) {
         this.vaxName = vaxName;
         this.compName = compName;
         this.type = type;
         this.neededDoses = neededDoses;
         this.warehouseDoses = warehouseDoses;
-//        this.sideEffect = sideEffect;
     }
 
     public String getVaxName() {
@@ -76,12 +72,5 @@ public class VaccineCommand {
     public void setWarehouseDoses(long warehouseDoses) {
         this.warehouseDoses = warehouseDoses;
     }
-//
-//    public SideEffect getSideEffect() {
-//        return sideEffect;
-//    }
-//
-//    public void setSideEffect(SideEffect sideEffect) {
-//        this.sideEffect = sideEffect;
-//    }
+
 }
