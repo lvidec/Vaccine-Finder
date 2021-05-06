@@ -3,42 +3,45 @@ package hr.tvz.videc.vaxapp.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "SideEffect")
+//@Table(name = "SideEffect")
 public class SideEffect {
 
     @Id
-    @Column(name = "sideEffectId")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long sideEffectId;
+    private Long id;
 
-    @Column(name = "shortDesc")
+//    @Column(name = "shortDesc")
+    @Column
     private String shortDesc;
 
-    @Column(name = "longDesc")
+//    @Column(name = "longDesc")
+    @Column
     private String longDesc;
 
-    @Column(name = "frequency")
+//    @Column(name = "frequency")
+    @Column
     private float frequency;
 
     @ManyToOne
-    @JoinColumn(name = "vaccineId")
+    @JoinColumn(name = "vaccine_id", nullable = false)
     private Vaccine vaccine;
 
-    public SideEffect(String shortDesc, String longDesc, float frequency) {
+    public SideEffect(String shortDesc, String longDesc, float frequency, Vaccine vaccine) {
         this.shortDesc = shortDesc;
         this.longDesc = longDesc;
         this.frequency = frequency;
+        this.vaccine = vaccine;
     }
 
     public SideEffect() { }
 
-    @Id
-    public Long getSideEffectId() {
-        return sideEffectId;
+    public Long getId() {
+        return id;
     }
 
-    public void setSideEffectId(Long sideEffectId) {
-        this.sideEffectId = sideEffectId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getShortDesc() {
@@ -63,5 +66,13 @@ public class SideEffect {
 
     public void setFrequency(float frequency) {
         this.frequency = frequency;
+    }
+
+    public Vaccine getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(Vaccine vaccine) {
+        this.vaccine = vaccine;
     }
 }

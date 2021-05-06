@@ -30,29 +30,29 @@ public class JdbcVaccineRepository implements VaccineRepository {
 
     @Override
     public List<Vaccine> findAll() {
-        return jdbc.query("select vaxName, compName, type, neededDoses, warehouseDoses from vaccine",
+        return jdbc.query("select vax_name, comp_name, type, needed_doses, warehouse_doses from vaccine",
                 this::mapRowToVaccine);
     }
 
     private Vaccine mapRowToVaccine(ResultSet rs, int i) throws SQLException {
         Vaccine vaccine = new Vaccine();
-        vaccine.setVaxName(rs.getString("vaxName"));
-        vaccine.setCompName(rs.getString("compName"));
+        vaccine.setVaxName(rs.getString("vax_name"));
+        vaccine.setCompName(rs.getString("comp_name"));
         vaccine.setType(rs.getString("type"));
-        vaccine.setNeededDoses(rs.getInt("neededDoses"));
-        vaccine.setWarehouseDoses(rs.getLong("warehouseDoses"));
+        vaccine.setNeededDoses(rs.getInt("needed_doses"));
+        vaccine.setWarehouseDoses(rs.getLong("warehouse_doses"));
         return vaccine;
     }
 
     @Override
     public Optional<Vaccine> findVaccineByResearchName(String researchName) {
-        return jdbc.query("select vaxName, compName, type, neededDoses, warehouseDoses from vaccine where vaxName = ?",
+        return jdbc.query("select vax_name, comp_name, type, needed_doses, warehouse_doses from vaccine where vax_name = ?",
                 this::mapRowToVaccine, researchName).stream().findFirst();
     }
 
     @Override
     public List<Vaccine> findVaccineByWarehouseDosses(long requestedWarehouseDosses) {
-        return new ArrayList<>(jdbc.query("select vaxName, compName, type, neededDoses, warehouseDoses from vaccine where warehouseDoses = ?",
+        return new ArrayList<>(jdbc.query("select vax_name, comp_name, type, needed_doses, warehouse_doses from vaccine where warehouse_doses = ?",
                 this::mapRowToVaccine, requestedWarehouseDosses));
     }
 
@@ -87,13 +87,13 @@ public class JdbcVaccineRepository implements VaccineRepository {
 
     @Override
     public List<Vaccine> findVaccinesByNumberOfWarehouseDoses(long warehouseDosesMin, long warehouseDosesMax) {
-        return new ArrayList<>(jdbc.query("select vaxName, compName, type, neededDoses, warehouseDoses from vaccine where warehouseDoses >= ? and warehouseDoses <= ?",
+        return new ArrayList<>(jdbc.query("select vax_name, comp_name, type, needed_doses, warehouse_doses from vaccine where warehouse_doses >= ? and warehouse_doses <= ?",
                 this::mapRowToVaccine, warehouseDosesMin, warehouseDosesMax));
     }
 
     @Override
     public void deleteVaccine(String vaxName) {
-        jdbc.update("DELETE FROM vaccine WHERE vaxName LIKE ?", vaxName);
+        jdbc.update("DELETE FROM vaccine WHERE vax_name LIKE ?", vaxName);
     }
 
     private Vaccine mapCommandToVaccine(VaccineCommand vaccineCommand){

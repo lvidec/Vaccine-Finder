@@ -21,14 +21,14 @@ public class SideEffectController {
         this.sideEffectService = sideEffectService;
     }
 
-    @GetMapping("/{id}")
-    public List<SideEffect> findBySideEffectId(@PathVariable Long id){
-        return sideEffectService.findBySideEffectId(id);
+    @GetMapping
+    public List<SideEffect> findAll(){
+        return sideEffectService.findAll();
     }
 
-//    @GetMapping("/{sideEffect}")
-//    public List<SideEffect> findByVaxNameLike(@PathVariable String vaxName){
-//        return sideEffectService.findByVaxNameLike(vaxName);
-//    }
+    @GetMapping("/{vaxName}")
+    public List<SideEffect> findByVaccine_VaxName(@PathVariable String vaxName){
+        return sideEffectService.findByVaccine_VaxName(vaxName);
+    }
 
 }

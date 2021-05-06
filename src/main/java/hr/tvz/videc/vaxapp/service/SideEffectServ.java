@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -21,12 +22,12 @@ public class SideEffectServ implements SideEffectService {
     public SideEffectServ(){}
 
     @Override
-    public List<SideEffect> findBySideEffectId( Long id) {
-        return sideEffectJpaRepository.findBySideEffectId(id);
+    public List<SideEffect> findAll() {
+        return sideEffectJpaRepository.findAll();
     }
-//
-//    @Override
-//    public List<SideEffect> findByVaxNameLike(String vaxName) {
-//        return sideEffectJpaRepository.findByVaxNameLike(vaxName);
-//    }
+
+    @Override
+    public List<SideEffect> findByVaccine_VaxName(String vaxName) {
+        return sideEffectJpaRepository.findByVaccine_VaxName(vaxName);
+    }
 }

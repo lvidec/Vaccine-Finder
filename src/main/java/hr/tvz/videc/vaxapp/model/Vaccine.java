@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Vaccine")
+//@Table(name = "Vaccine")
 public class Vaccine {
 
     @Id
@@ -12,19 +12,26 @@ public class Vaccine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "vaxName")
+//    @Column(name = "vaxName")
+    @Column
     private String vaxName;
 
-    @Column(name = "compName")
+//    @Column(name = "compName")
+    @Column
     private String compName;
 
-    @Column(name = "type")
+//    @Column(name = "type")
+    @Column
     private String type;
 
-    @Column(name = "neededDoses")
+//    @Column(name = "neededDoses")
+
+    @Column
     private int neededDoses;
 
-    @Column(name = "warehouseDoses")
+//    @Column(name = "warehouseDoses")
+
+    @Column
     private long warehouseDoses;
 
 //    @Column(name = "sideEffectId")
@@ -85,7 +92,6 @@ public class Vaccine {
         return warehouseDoses;
     }
 
-    @Id
     public Long getId() { return id; }
 
 

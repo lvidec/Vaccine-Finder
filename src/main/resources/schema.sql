@@ -1,18 +1,18 @@
-CREATE TABLE IF NOT EXISTS Vaccine(
+CREATE TABLE IF NOT EXISTS vaccine(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    vaxName VARCHAR(100) NOT NULL,
-    compName VARCHAR(100) NOT NULL,
-    TYPE VARCHAR(20) NOT NULL,
-    neededDoses INT NOT NULL,
-    warehouseDoses INT NOT NULL
+    vax_name VARCHAR(100) NOT NULL,
+    comp_name VARCHAR(100) NOT NULL,
+    type VARCHAR(20) NOT NULL,
+    needed_doses INT NOT NULL,
+    warehouse_doses INT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS SideEffect(
+CREATE TABLE IF NOT EXISTS side_effect(
     id INT AUTO_INCREMENT,
-    shortDesc VARCHAR(100) NOT NULL,
-    longDesc VARCHAR(500) NOT NULL,
+    short_desc VARCHAR(100) NOT NULL,
+    long_desc VARCHAR(500) NOT NULL,
     frequency INT NOT NULL,
-    vaccineId INT,
+    vaccine_id INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (vaccineId) REFERENCES Vaccine(id)
+    FOREIGN KEY (vaccine_id) REFERENCES vaccine(id)
 );

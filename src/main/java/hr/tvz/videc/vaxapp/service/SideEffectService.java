@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface SideEffectService {
 
-    List<SideEffect> findBySideEffectId( Long id);
+    List<SideEffect> findAll();
 
-//    List<SideEffect> findBySideEffectId(String vaxName);
+    List<SideEffect> findByVaccine_VaxName(String vaxName);
 
 }
