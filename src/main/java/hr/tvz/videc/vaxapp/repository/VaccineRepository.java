@@ -11,13 +11,13 @@ public interface VaccineRepository {
 
     Optional<Vaccine> findVaccineByResearchName(String researchName);
 
-    List<Vaccine> findVaccineByWarehouseDosses(long requestedWarehouseDosses);
+    List<Vaccine> findVaccineByAvailableDoses(long requestedAvailableDoses);
 
     Optional<Vaccine> addVaccine(VaccineCommand vaccineCommand);
 
     Optional<Vaccine> updateVaccine(String vaxName, VaccineCommand vaccineCommand);
 
-    List<Vaccine> findVaccinesByNumberOfWarehouseDoses(long warehouseDosesMin, long warehouseDosesMax);
+    List<Vaccine> findVaccinesByNumberOfAvailableDoses(long availableDosesMin, long availableDosesMax);
 
 
     void deleteVaccine(String vaxName);

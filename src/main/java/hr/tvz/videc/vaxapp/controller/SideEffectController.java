@@ -1,6 +1,7 @@
 package hr.tvz.videc.vaxapp.controller;
 
 import hr.tvz.videc.vaxapp.model.SideEffect.SideEffect;
+import hr.tvz.videc.vaxapp.repository.SideEffectJpaRepository;
 import hr.tvz.videc.vaxapp.service.SideEffectService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +24,10 @@ public class SideEffectController {
         return sideEffectService.findAll();
     }
 
-    @GetMapping(params = "vaxName")
-    public List<SideEffect> findByVaccine_VaxName(@RequestParam String vaxName){
-        return sideEffectService.findByVaccine_VaxName(vaxName);
+    @GetMapping(params = "vaccineResearchName")
+    public List<SideEffect> findByVaccine_ResearchName(@RequestParam String vaccineResearchName){
+        return sideEffectService.findByVaccine_ResearchName(vaccineResearchName);
     }
+
 
 }

@@ -11,16 +11,13 @@ public interface VaccineService {
 
     VaccineDTO findVaccineByResearchName(String researchName);
 
-    List<VaccineDTO> findVaccineByWarehouseDoses(long requestedWarehouseDosses);
+    List<VaccineDTO> findVaccineByAvailableDoses(long requestedAvailableDosses);
 
     Optional<VaccineDTO> addVaccine(VaccineCommand vaccineCommand);
 
     Optional<VaccineDTO> updateVaccine(String vaxName, VaccineCommand vaccineCommand);
 
-//    Optional<VaccineDTO> addSideEffect(SideEffect effect);
-
-    List<VaccineDTO> findVaccinesByNumberOfWarehouseDoses(long warehouseDosesMin, long warehouseDosesMax);
-
+    List<VaccineDTO> findVaccinesByNumberOfAvailableDoses(long availableDossesMin, long availableDossesMax);
 
     void deleteVaccine(String vaxName);
 

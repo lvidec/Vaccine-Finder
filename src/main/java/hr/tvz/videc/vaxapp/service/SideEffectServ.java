@@ -26,7 +26,7 @@ public class SideEffectServ implements SideEffectService {
     }
 
     @Override
-    public List<SideEffect> findByVaccine_VaxName(String vaxName) {
-        return sideEffectJpaRepository.findByVaccine_VaxName(vaxName);
+    public List<SideEffect> findByVaccine_ResearchName(String researchName) {
+        return sideEffectJpaRepository.findByVaccine_ResearchName(researchName);
     }
 }

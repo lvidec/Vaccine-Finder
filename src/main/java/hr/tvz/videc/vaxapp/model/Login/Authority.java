@@ -1,7 +1,5 @@
 package hr.tvz.videc.vaxapp.model.Login;
 
-import hr.tvz.videc.vaxapp.model.Login.User;
-
 import javax.persistence.*;
 import java.util.List;
 

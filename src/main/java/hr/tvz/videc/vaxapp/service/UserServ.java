@@ -1,5 +1,6 @@
 package hr.tvz.videc.vaxapp.service;
 
+import hr.tvz.videc.vaxapp.model.Login.Authority;
 import hr.tvz.videc.vaxapp.model.Login.User;
 import hr.tvz.videc.vaxapp.model.Login.UserDTO;
 import hr.tvz.videc.vaxapp.repository.UserJpaRepository;
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserServ implements UserService{
 
-    private UserJpaRepository userRepository;
+    private final UserJpaRepository userRepository;
 
     public UserServ(UserJpaRepository userRepository){
         this.userRepository = userRepository;
@@ -23,7 +24,7 @@ public class UserServ implements UserService{
     }
 
     private UserDTO mapUserToUserDTO(User user){
-        return new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getAuthorities().stream().map(String::valueOf).collect(Collectors.toSet()));
+        return new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet()));
     }
 
 }

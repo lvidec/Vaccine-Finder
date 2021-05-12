@@ -32,8 +32,8 @@ public class VaccineServ implements VaccineService, Serializable {
     }
 
     @Override
-    public List<VaccineDTO> findVaccineByWarehouseDoses(long requestedWarehouseDosses) {
-        return vaccineRepository.findVaccineByWarehouseDosses(requestedWarehouseDosses).stream().map(this::mapVaccineToDTO).collect(Collectors.toList());
+    public List<VaccineDTO> findVaccineByAvailableDoses(long requestedAvailableDoses) {
+        return vaccineRepository.findVaccineByAvailableDoses(requestedAvailableDoses).stream().map(this::mapVaccineToDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -43,14 +43,14 @@ public class VaccineServ implements VaccineService, Serializable {
     }
 
     @Override
-    public Optional<VaccineDTO> updateVaccine(String vaxName, VaccineCommand vaccineCommand) {
-        vaccineRepository.updateVaccine(vaxName, vaccineCommand);
+    public Optional<VaccineDTO> updateVaccine(String researchName, VaccineCommand vaccineCommand) {
+        vaccineRepository.updateVaccine(researchName, vaccineCommand);
         return Optional.of(mapVaccineToDTO(vaccineCommand));
     }
 
     @Override
-    public List<VaccineDTO> findVaccinesByNumberOfWarehouseDoses(long warehouseDosesMin, long warehouseDosesMax) {
-        return vaccineRepository.findVaccinesByNumberOfWarehouseDoses(warehouseDosesMin, warehouseDosesMax).stream().map(this::mapVaccineToDTO).collect(Collectors.toList());
+    public List<VaccineDTO> findVaccinesByNumberOfAvailableDoses(long availableDosesMin, long availableDosesMax) {
+        return vaccineRepository.findVaccinesByNumberOfAvailableDoses(availableDosesMin, availableDosesMax).stream().map(this::mapVaccineToDTO).collect(Collectors.toList());
     }
 
 //    @Override
@@ -59,16 +59,16 @@ public class VaccineServ implements VaccineService, Serializable {
 //    }
 
     @Override
-    public void deleteVaccine(String vaxName) {
-        vaccineRepository.deleteVaccine(vaxName);
+    public void deleteVaccine(String researchName) {
+        vaccineRepository.deleteVaccine(researchName);
     }
 
     private VaccineDTO mapVaccineToDTO(Vaccine vaccine){
-        return new VaccineDTO(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getType(), vaccine.getNeededDoses(), vaccine.getWarehouseDoses());
+        return new VaccineDTO(vaccine.getResearchName(), vaccine.getManufacturerName(), vaccine.getType(), vaccine.getNumberOfShots(), vaccine.getAvailableDoses());
     }
 
     private VaccineDTO mapVaccineToDTO(VaccineCommand vaccineCommand){
-        return new VaccineDTO(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getType(), vaccineCommand.getNeededDoses(), vaccineCommand.getWarehouseDoses());
+        return new VaccineDTO(vaccineCommand.getResearchName(), vaccineCommand.getManufacturerName(), vaccineCommand.getType(), vaccineCommand.getNumberOfShots(), vaccineCommand.getAvailableDoses());
     }
 
 }

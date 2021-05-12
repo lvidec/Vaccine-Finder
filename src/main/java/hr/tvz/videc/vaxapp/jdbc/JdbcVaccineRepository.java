@@ -27,54 +27,54 @@ public class JdbcVaccineRepository implements VaccineRepository {
 
     @Override
     public List<Vaccine> findAll() {
-        return jdbc.query("select vax_name, comp_name, type, needed_doses, warehouse_doses from vaccine",
+        return jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine",
                 this::mapRowToVaccine);
     }
 
     private Vaccine mapRowToVaccine(ResultSet rs, int i) throws SQLException {
         Vaccine vaccine = new Vaccine();
-        vaccine.setVaxName(rs.getString("vax_name"));
-        vaccine.setCompName(rs.getString("comp_name"));
+        vaccine.setResearchName(rs.getString("research_name"));
+        vaccine.setManufacturerName(rs.getString("manufacturer_name"));
         vaccine.setType(rs.getString("type"));
-        vaccine.setNeededDoses(rs.getInt("needed_doses"));
-        vaccine.setWarehouseDoses(rs.getLong("warehouse_doses"));
+        vaccine.setNumberOfShots(rs.getInt("number_of_shots"));
+        vaccine.setAvailableDoses(rs.getLong("available_doses"));
         return vaccine;
     }
 
     @Override
     public Optional<Vaccine> findVaccineByResearchName(String researchName) {
-        return jdbc.query("select vax_name, comp_name, type, needed_doses, warehouse_doses from vaccine where vax_name = ?",
+        return jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine where research_name = ?",
                 this::mapRowToVaccine, researchName).stream().findFirst();
     }
 
     @Override
-    public List<Vaccine> findVaccineByWarehouseDosses(long requestedWarehouseDosses) {
-        return new ArrayList<>(jdbc.query("select vax_name, comp_name, type, needed_doses, warehouse_doses from vaccine where warehouse_doses = ?",
-                this::mapRowToVaccine, requestedWarehouseDosses));
+    public List<Vaccine> findVaccineByAvailableDoses(long requestedAvailableDoses) {
+        return new ArrayList<>(jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine where available_doses = ?",
+                this::mapRowToVaccine, requestedAvailableDoses));
     }
 
     @Override
     public Optional<Vaccine> addVaccine(VaccineCommand vaccineCommand) {
-        vaccineCommand.setVaxName(addVaccineDetails(vaccineCommand));
+        vaccineCommand.setResearchName(addVaccineDetails(vaccineCommand));
         return Optional.of(mapCommandToVaccine(vaccineCommand));
     }
 
     private String addVaccineDetails(VaccineCommand vaccineCommand){
         Map<String, Object> values = new HashMap<>();
 
-        values.put("vaxName", vaccineCommand.getVaxName());
-        values.put("compName", vaccineCommand.getCompName());
+        values.put("research_name", vaccineCommand.getResearchName());
+        values.put("manufacturer_name", vaccineCommand.getManufacturerName());
         values.put("type", vaccineCommand.getType());
-        values.put("neededDoses", vaccineCommand.getNeededDoses());
-        values.put("warehouseDoses", vaccineCommand.getWarehouseDoses());
+        values.put("number_of_shots", vaccineCommand.getNumberOfShots());
+        values.put("available_doses", vaccineCommand.getAvailableDoses());
 
         vaccineInserter.execute(values);
-        return vaccineCommand.getVaxName();
+        return vaccineCommand.getResearchName();
     }
 
     @Override
-    public Optional<Vaccine> updateVaccine(String vaxName, VaccineCommand vaccineCommand) {
-        Optional<Vaccine> vaccineToRemove = findAll().stream().filter( x -> x.getVaxName().equals(vaxName)).findFirst();
+    public Optional<Vaccine> updateVaccine(String research_name, VaccineCommand vaccineCommand) {
+        Optional<Vaccine> vaccineToRemove = findAll().stream().filter( x -> x.getResearchName().equals(research_name)).findFirst();
         if (vaccineToRemove.isEmpty()) {
             return Optional.empty();
         }
@@ -83,22 +83,22 @@ public class JdbcVaccineRepository implements VaccineRepository {
     }
 
     @Override
-    public List<Vaccine> findVaccinesByNumberOfWarehouseDoses(long warehouseDosesMin, long warehouseDosesMax) {
-        return new ArrayList<>(jdbc.query("select vax_name, comp_name, type, needed_doses, warehouse_doses from vaccine where warehouse_doses >= ? and warehouse_doses <= ?",
-                this::mapRowToVaccine, warehouseDosesMin, warehouseDosesMax));
+    public List<Vaccine> findVaccinesByNumberOfAvailableDoses(long availableDosesMin, long availableDosesMax) {
+        return new ArrayList<>(jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine where available_doses >= ? and available_doses <= ?",
+                this::mapRowToVaccine, availableDosesMin, availableDosesMax));
     }
 
     @Override
-    public void deleteVaccine(String vaxName) {
-        jdbc.update("DELETE FROM vaccine WHERE vax_name LIKE ?", vaxName);
+    public void deleteVaccine(String research_name) {
+        jdbc.update("DELETE FROM vaccine WHERE research_name LIKE ?", research_name);
     }
 
     private Vaccine mapCommandToVaccine(VaccineCommand vaccineCommand){
-        return new Vaccine(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getType(), vaccineCommand.getNeededDoses(), vaccineCommand.getWarehouseDoses());
+        return new Vaccine(vaccineCommand.getResearchName(), vaccineCommand.getManufacturerName(), vaccineCommand.getType(), vaccineCommand.getNumberOfShots(), vaccineCommand.getAvailableDoses());
     }
 
     private VaccineCommand mapVaccineToCommand(Vaccine vaccine){
-        return new VaccineCommand(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getType(), vaccine.getNeededDoses(), vaccine.getWarehouseDoses());
+        return new VaccineCommand(vaccine.getResearchName(), vaccine.getManufacturerName(), vaccine.getType(), vaccine.getNumberOfShots(), vaccine.getAvailableDoses());
     }
 
 }

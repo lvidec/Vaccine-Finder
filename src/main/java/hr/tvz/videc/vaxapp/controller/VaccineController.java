@@ -5,7 +5,6 @@ import hr.tvz.videc.vaxapp.model.Vaccine.VaccineDTO;
 import hr.tvz.videc.vaxapp.service.VaccineService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,24 +27,23 @@ public class VaccineController {
         return vaccineService.findAll();
     }
 
-    @GetMapping("/{vaxName}")
-    public VaccineDTO getByResearchName(@PathVariable final String vaxName){
-        return vaccineService.findVaccineByResearchName(vaxName);
+    @GetMapping("/{researchName}")
+    public VaccineDTO getByResearchName(@PathVariable final String researchName){
+        return vaccineService.findVaccineByResearchName(researchName);
     }
 
-    @GetMapping(params = "warehouseDosses")
-    public List<VaccineDTO> getByWarehouseDosses(@RequestParam final long warehouseDosses){
-        return vaccineService.findVaccineByWarehouseDoses(warehouseDosses);
+    @GetMapping(params = "AvailableDosses")
+    public List<VaccineDTO> getByAvailableDosses(@RequestParam final long availableDosses){
+        return vaccineService.findVaccineByAvailableDoses(availableDosses);
     }
 
     @GetMapping("/between")
-    public List<VaccineDTO> getVaccinesByNumberOfWarehouseDoses(@RequestParam("min") final long warehouseDossesMin, @RequestParam("max") final long warehouseDosesMax){
-        return vaccineService.findVaccinesByNumberOfWarehouseDoses(warehouseDossesMin, warehouseDosesMax);
+    public List<VaccineDTO> getVaccinesByNumberOfAvailableDoses(@RequestParam("min") final long availableDossesMin, @RequestParam("max") final long availableDossesMax){
+        return vaccineService.findVaccinesByNumberOfAvailableDoses(availableDossesMin, availableDossesMax);
     }
 
     @PostMapping
     public ResponseEntity<VaccineDTO> addVaccine(@Valid @RequestBody final VaccineCommand vaccineCommand){
-//        return new ResponseEntity<VaccineDTO>(new VaccineDTO(vaccineCommand.getCompName(), vaccineCommand.getNeededDoses()), HttpStatus.CREATED);
         return vaccineService.addVaccine(vaccineCommand).map(
                 vaccineDTO -> ResponseEntity.status(HttpStatus.CREATED).body(vaccineDTO)
             ).orElseGet(
@@ -53,10 +51,9 @@ public class VaccineController {
             );
     }
 
-    @PutMapping("/{vaxName}")
-    public ResponseEntity<VaccineDTO> updateVaccine(@PathVariable String vaxName, @Valid @RequestBody final VaccineCommand vaccineCommand){
-//        return new ResponseEntity<VaccineDTO>(new VaccineDTO(vaccineCommand.getCompName(), vaccineCommand.getNeededDoses()), HttpStatus.CREATED);
-        return vaccineService.updateVaccine(vaxName, vaccineCommand).map(
+    @PutMapping("/{researchName}")
+    public ResponseEntity<VaccineDTO> updateVaccine(@PathVariable String researchName, @Valid @RequestBody final VaccineCommand vaccineCommand){
+        return vaccineService.updateVaccine(researchName, vaccineCommand).map(
                 vaccineDTO -> ResponseEntity.status(HttpStatus.CREATED).body(vaccineDTO)
             ).orElseGet(
                 () -> ResponseEntity.status(HttpStatus.CONFLICT).build()
@@ -64,9 +61,9 @@ public class VaccineController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{vaxName}")
-    public void deleteVaccine(@PathVariable String vaxName){
-        vaccineService.deleteVaccine(vaxName);
+    @DeleteMapping("/{researchName}")
+    public void deleteVaccine(@PathVariable String researchName){
+        vaccineService.deleteVaccine(researchName);
     }
 
 }

@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-//@Table(name = "Vaccine")
 public class Vaccine {
 
     @Id
@@ -12,84 +11,72 @@ public class Vaccine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @Column(name = "vaxName")
     @Column
-    private String vaxName;
+    private String researchName;
 
-//    @Column(name = "compName")
     @Column
-    private String compName;
+    private String manufacturerName;
 
-//    @Column(name = "type")
     @Column
     private String type;
 
-//    @Column(name = "neededDoses")
+    @Column
+    private int numberOfShots;
 
     @Column
-    private int neededDoses;
+    private long availableDoses;
 
-//    @Column(name = "warehouseDoses")
 
-    @Column
-    private long warehouseDoses;
-
-//    @Column(name = "sideEffectId")
-//    @Enumerated(EnumType.STRING)
-//    @JoinTable(name = "SideEffect", joinColumns = @JoinColumn(name = "vaxName"))
-//    @JoinColumn(name = "id")
-//    private Long sideEffectId;
-
-    public Vaccine(String vaxName, String compName, String type, int neededDoses, long warehouseDoses) {
-        this.vaxName = vaxName;
-        this.compName = compName;
+    public Vaccine(String researchName, String manufacturerName, String type, int numberOfShots, long availableDoses) {
+        this.researchName = researchName;
+        this.manufacturerName = manufacturerName;
         this.type = type;
-        this.neededDoses = neededDoses;
-        this.warehouseDoses = warehouseDoses;
+        this.numberOfShots = numberOfShots;
+        this.availableDoses = availableDoses;
     }
 
     public Vaccine(){}
 
-    public void setVaxName(String vaxName) {
-        this.vaxName = vaxName;
+    public void setResearchName(String researchName) {
+        this.researchName = researchName;
     }
 
-    public void setCompName(String compName) {
-        this.compName = compName;
+    public void setManufacturerName(String manufacturerName) {
+        this.manufacturerName = manufacturerName;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
-    public void setNeededDoses(int neededDoses) {
-        this.neededDoses = neededDoses;
+    public void setNumberOfShots(int numberOfShots) {
+        this.numberOfShots = numberOfShots;
     }
 
-    public void setWarehouseDoses(long warehouseDoses) {
-        this.warehouseDoses = warehouseDoses;
+    public void setAvailableDoses(long availableDoses) {
+        this.availableDoses = availableDoses;
     }
 
     public void setId(Long id) { this.id = id; }
 
-    public String getVaxName() {
-        return vaxName;
+    public String getResearchName() {
+        return researchName;
     }
 
-    public String getCompName() {
-        return compName;
+    public String getManufacturerName() {
+        return manufacturerName;
     }
 
     public String getType() {
         return type;
     }
 
-    public int getNeededDoses() {
-        return neededDoses;
+    public int getNumberOfShots() {
+        return numberOfShots;
     }
 
-    public long getWarehouseDoses() {
-        return warehouseDoses;
+    public long getAvailableDoses() {
+        return availableDoses;
     }
 
     public Long getId() { return id; }
@@ -100,12 +87,12 @@ public class Vaccine {
         if (this == o) return true;
         if (!(o instanceof Vaccine)) return false;
         Vaccine vaccine = (Vaccine) o;
-        return getNeededDoses() == vaccine.getNeededDoses() && getWarehouseDoses() == vaccine.getWarehouseDoses() && getId().equals(vaccine.getId()) && getVaxName().equals(vaccine.getVaxName()) && getCompName().equals(vaccine.getCompName()) && getType().equals(vaccine.getType());
+        return getNumberOfShots() == vaccine.getNumberOfShots() && getAvailableDoses() == vaccine.getAvailableDoses() && getId().equals(vaccine.getId()) && getResearchName().equals(vaccine.getResearchName()) && getManufacturerName().equals(vaccine.getManufacturerName()) && getType().equals(vaccine.getType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getVaxName(), getCompName(), getType(), getNeededDoses(), getWarehouseDoses());
+        return Objects.hash(getId(), getResearchName(), getManufacturerName(), getType(), getNumberOfShots(), getAvailableDoses());
     }
 
 

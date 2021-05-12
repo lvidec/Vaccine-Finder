@@ -8,6 +8,6 @@ public interface SideEffectService {
 
     List<SideEffect> findAll();
 
-    List<SideEffect> findByVaccine_VaxName(String vaxName);
+    List<SideEffect> findByVaccine_ResearchName(String researchName);
 
 }

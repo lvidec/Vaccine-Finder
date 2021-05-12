@@ -1,6 +1,5 @@
 package hr.tvz.videc.vaxapp.model.Login;
 
-import java.util.List;
 import java.util.Set;
 
 public class UserDTO {

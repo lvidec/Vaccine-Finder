@@ -12,6 +12,6 @@ public interface SideEffectJpaRepository extends JpaRepository<SideEffect, Long>
 
     List<SideEffect> findAll();
 
-    List<SideEffect> findByVaccine_VaxName(String vaxName);
+    List<SideEffect> findByVaccine_ResearchName(String researchName);
 
 }

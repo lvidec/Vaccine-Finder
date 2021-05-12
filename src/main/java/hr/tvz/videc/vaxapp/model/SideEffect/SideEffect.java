@@ -5,7 +5,6 @@ import hr.tvz.videc.vaxapp.model.Vaccine.Vaccine;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "SideEffect")
 public class SideEffect {
 
     @Id
@@ -14,10 +13,10 @@ public class SideEffect {
     private Long id;
 
     @Column
-    private String shortDesc;
+    private String shortDescription;
 
     @Column
-    private String longDesc;
+    private String description;
 
     @Column
     private float frequency;
@@ -26,9 +25,9 @@ public class SideEffect {
     @JoinColumn(name = "vaccine_id", nullable = false)
     private Vaccine vaccine;
 
-    public SideEffect(String shortDesc, String longDesc, float frequency, Vaccine vaccine) {
-        this.shortDesc = shortDesc;
-        this.longDesc = longDesc;
+    public SideEffect(String shortDescription, String description, float frequency, Vaccine vaccine) {
+        this.shortDescription = shortDescription;
+        this.description = description;
         this.frequency = frequency;
         this.vaccine = vaccine;
     }
@@ -43,20 +42,20 @@ public class SideEffect {
         this.id = id;
     }
 
-    public String getShortDesc() {
-        return shortDesc;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public void setShortDesc(String shortDesc) {
-        this.shortDesc = shortDesc;
+    public void setShortDescription(String shortDesc) {
+        this.shortDescription = shortDesc;
     }
 
-    public String getLongDesc() {
-        return longDesc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLongDesc(String longDesc) {
-        this.longDesc = longDesc;
+    public void setDescription(String longDesc) {
+        this.description = longDesc;
     }
 
     public float getFrequency() {

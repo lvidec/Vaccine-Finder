@@ -10,15 +10,15 @@ public class SideEffectCommand {
     private String shortDescription;
 
     @NotBlank(message = "Long description cannot be empty!")
-    private String longDescription;
+    private String description;
 
     @NotNull(message = "Frequency of occurrences cannot be empty!")
     @Max(message = "Frequency of occurrences must be lower than 100", value = 100)
     private float frequency;
 
-    public SideEffectCommand(String shortDescription, String longDescription, float frequency) {
+    public SideEffectCommand(String shortDescription, String description, float frequency) {
         this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
+        this.description = description;
         this.frequency = frequency;
     }
 
@@ -26,9 +26,9 @@ public class SideEffectCommand {
 
     public void setShortDescription(String shortDescription) { this.shortDescription = shortDescription; }
 
-    public String getLongDescription() { return longDescription; }
+    public String getDescription() { return description; }
 
-    public void setLongDescription(String longDescription) { this.longDescription = longDescription; }
+    public void setDescription(String description) { this.description = description; }
 
     public float getFrequency() { return frequency; }
 

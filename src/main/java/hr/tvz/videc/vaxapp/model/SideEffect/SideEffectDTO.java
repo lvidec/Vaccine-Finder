@@ -3,12 +3,12 @@ package hr.tvz.videc.vaxapp.model.SideEffect;
 public class SideEffectDTO {
 
     private String shortDescription;
-    private String longDescription;
+    private String description;
     private float frequency;
 
-    public SideEffectDTO(String shortDescription, String longDescription, float frequency) {
+    public SideEffectDTO(String shortDescription, String description, float frequency) {
         this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
+        this.description = description;
         this.frequency = frequency;
     }
 
@@ -16,9 +16,9 @@ public class SideEffectDTO {
 
     public void setShortDescription(String shortDescription) { this.shortDescription = shortDescription; }
 
-    public String getLongDescription() { return longDescription; }
+    public String getDescription() { return description; }
 
-    public void setLongDescription(String longDescription) { this.longDescription = longDescription; }
+    public void setDescription(String description) { this.description = description; }
 
     public float getFrequency() { return frequency; }
 

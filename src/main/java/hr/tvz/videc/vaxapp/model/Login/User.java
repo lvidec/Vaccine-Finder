@@ -3,7 +3,6 @@ package hr.tvz.videc.vaxapp.model.Login;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -41,7 +40,7 @@ public class User {
 
     public User() { }
 
-    public User(String username, String password, List<GrantedAuthority> grantedAuthorities) { }
+    public User(String username, String password, Set<GrantedAuthority> grantedAuthorities) { }
 
     public Long getId() { return id; }
 
