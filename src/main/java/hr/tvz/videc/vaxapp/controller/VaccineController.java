@@ -1,11 +1,11 @@
 package hr.tvz.videc.vaxapp.controller;
 
-import hr.tvz.videc.vaxapp.VaccineCommand;
-import hr.tvz.videc.vaxapp.model.SideEffect;
-import hr.tvz.videc.vaxapp.model.VaccineDTO;
+import hr.tvz.videc.vaxapp.model.Vaccine.VaccineCommand;
+import hr.tvz.videc.vaxapp.model.Vaccine.VaccineDTO;
 import hr.tvz.videc.vaxapp.service.VaccineService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,6 +22,7 @@ public class VaccineController {
         this.vaccineService = vaccineService;
     }
 
+//    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping
     public List<VaccineDTO> getAllVaccines(){
         return vaccineService.findAll();

@@ -1,5 +1,4 @@
-INSERT INTO vaccine
-(vax_name, comp_name, type, needed_doses, warehouse_doses) VALUES
+INSERT INTO vaccine(vax_name, comp_name, type, needed_doses, warehouse_doses) VALUES
 ('Pfizer-BioNTech', 'Pfizer, Inc., and BioNTech', 'mRNA', 2, 300),
 ('Moderna', 'ModernaTX, Inc.', 'mRNA', 2, 20000),
 ('vakcinaZaMoze', 'Mozi', 'mRNA', 1, 100000);
@@ -9,3 +8,15 @@ INSERT INTO side_effect(short_desc, long_desc, frequency, vaccine_id) VALUES
 ('Rak pluca', 'Moguća je pojava raka pluca na određene sastojke cjepiva', 1, 1),
 ('Bol u prsima', 'Moguća je pojava boli u prsima', 20, 2),
 ('Cist ko suza', 'Nemoguca je pojava icega ak si moz', 100, 3);
+
+INSERT INTO user(id, username, password, first_name, last_name) VALUES
+(1, 'admin', '$2a$10$7L7a0r29iWOtBG/ASaqd0uwwb1oJYwwNh6.27P9sHOhDuju0b8wce', 'Admin', 'Admirovic'),
+(2, 'user', '$2a$10$EsML0xcdPH5TaQhnPDRohuql9STvgvHA9lF5sMA.VCgO6XCQMzyDy', 'Userito', 'Usmehmetovic');
+
+INSERT INTO authority(id, name) VALUES
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_USER');
+
+INSERT INTO user_authority(user_id, authority_id) VALUES
+(1, 1),
+(2, 2);

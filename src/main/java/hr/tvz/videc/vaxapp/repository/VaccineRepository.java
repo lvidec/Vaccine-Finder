@@ -1,9 +1,7 @@
 package hr.tvz.videc.vaxapp.repository;
 
-import hr.tvz.videc.vaxapp.VaccineCommand;
-import hr.tvz.videc.vaxapp.model.SideEffect;
-import hr.tvz.videc.vaxapp.model.Vaccine;
-import hr.tvz.videc.vaxapp.model.VaccineDTO;
+import hr.tvz.videc.vaxapp.model.Vaccine.VaccineCommand;
+import hr.tvz.videc.vaxapp.model.Vaccine.Vaccine;
 
 import java.util.List;
 import java.util.Optional;

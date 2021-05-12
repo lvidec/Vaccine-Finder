@@ -1,4 +1,4 @@
-package hr.tvz.videc.vaxapp.model;
+package hr.tvz.videc.vaxapp.model.Vaccine;
 
 import javax.persistence.*;
 import java.util.Objects;

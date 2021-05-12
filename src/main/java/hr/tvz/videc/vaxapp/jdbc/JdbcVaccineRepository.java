@@ -1,19 +1,16 @@
 package hr.tvz.videc.vaxapp.jdbc;
 
-import hr.tvz.videc.vaxapp.VaccineCommand;
-import hr.tvz.videc.vaxapp.model.Vaccine;
-import hr.tvz.videc.vaxapp.model.VaccineDTO;
+import hr.tvz.videc.vaxapp.model.Vaccine.VaccineCommand;
+import hr.tvz.videc.vaxapp.model.Vaccine.Vaccine;
 import hr.tvz.videc.vaxapp.repository.VaccineRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Primary
 @Repository

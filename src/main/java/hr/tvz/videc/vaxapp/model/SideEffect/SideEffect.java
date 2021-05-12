@@ -1,9 +1,11 @@
-package hr.tvz.videc.vaxapp.model;
+package hr.tvz.videc.vaxapp.model.SideEffect;
+
+import hr.tvz.videc.vaxapp.model.Vaccine.Vaccine;
 
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "SideEffect")
+@Table(name = "SideEffect")
 public class SideEffect {
 
     @Id
@@ -11,15 +13,12 @@ public class SideEffect {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @Column(name = "shortDesc")
     @Column
     private String shortDesc;
 
-//    @Column(name = "longDesc")
     @Column
     private String longDesc;
 
-//    @Column(name = "frequency")
     @Column
     private float frequency;
 
@@ -68,11 +67,7 @@ public class SideEffect {
         this.frequency = frequency;
     }
 
-    public Vaccine getVaccine() {
-        return vaccine;
-    }
+    public Vaccine getVaccine() { return vaccine; }
 
-    public void setVaccine(Vaccine vaccine) {
-        this.vaccine = vaccine;
-    }
+    public void setVaccine(Vaccine vaccine) { this.vaccine = vaccine; }
 }

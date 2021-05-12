@@ -1,6 +1,4 @@
-package hr.tvz.videc.vaxapp;
-
-import hr.tvz.videc.vaxapp.model.SideEffect;
+package hr.tvz.videc.vaxapp.model.Vaccine;
 
 import javax.validation.constraints.*;
 

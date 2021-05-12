@@ -1,12 +1,11 @@
 package hr.tvz.videc.vaxapp.service;
 
-import hr.tvz.videc.vaxapp.model.SideEffect;
+import hr.tvz.videc.vaxapp.model.SideEffect.SideEffect;
 import hr.tvz.videc.vaxapp.repository.SideEffectJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service

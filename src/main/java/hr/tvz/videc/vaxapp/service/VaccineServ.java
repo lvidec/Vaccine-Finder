@@ -1,9 +1,9 @@
 package hr.tvz.videc.vaxapp.service;
 
-import hr.tvz.videc.vaxapp.VaccineCommand;
-//import hr.tvz.videc.vaxapp.model.SideEffect;
-import hr.tvz.videc.vaxapp.model.Vaccine;
-import hr.tvz.videc.vaxapp.model.VaccineDTO;
+import hr.tvz.videc.vaxapp.model.Vaccine.VaccineCommand;
+//import hr.tvz.videc.vaxapp.model.SideEffect.SideEffect;
+import hr.tvz.videc.vaxapp.model.Vaccine.Vaccine;
+import hr.tvz.videc.vaxapp.model.Vaccine.VaccineDTO;
 import hr.tvz.videc.vaxapp.repository.VaccineRepository;
 import org.springframework.stereotype.Service;
 
@@ -64,11 +64,11 @@ public class VaccineServ implements VaccineService, Serializable {
     }
 
     private VaccineDTO mapVaccineToDTO(Vaccine vaccine){
-        return new VaccineDTO(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getNeededDoses());
+        return new VaccineDTO(vaccine.getVaxName(), vaccine.getCompName(), vaccine.getType(), vaccine.getNeededDoses(), vaccine.getWarehouseDoses());
     }
 
     private VaccineDTO mapVaccineToDTO(VaccineCommand vaccineCommand){
-        return new VaccineDTO(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getNeededDoses());
+        return new VaccineDTO(vaccineCommand.getVaxName(), vaccineCommand.getCompName(), vaccineCommand.getType(), vaccineCommand.getNeededDoses(), vaccineCommand.getWarehouseDoses());
     }
 
 }
