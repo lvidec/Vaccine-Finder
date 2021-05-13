@@ -1,6 +1,7 @@
 package hr.tvz.videc.vaxapp.service;
 
 import hr.tvz.videc.vaxapp.model.SideEffect.SideEffect;
+import hr.tvz.videc.vaxapp.model.Vaccine.VaccineDTO;
 import hr.tvz.videc.vaxapp.repository.SideEffectJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,10 @@ public class SideEffectServ implements SideEffectService {
     @Override
     public List<SideEffect> findByVaccine_ResearchName(String researchName) {
         return sideEffectJpaRepository.findByVaccine_ResearchName(researchName);
+    }
+
+    @Override
+    public List<SideEffect> findVaccinesByNumberOfAvailableDoses(long freqMin, long freqMax) {
+        return sideEffectJpaRepository.findByFrequencyGreaterThanEqualAndFrequencyLessThanEqual(freqMin, freqMax);
     }
 }
