@@ -27,6 +27,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtFilter = jwtFilter;
     }
 
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(false);
+//        config.addAllowedOrigin("*");
+//        config.addAllowedHeader("*");
+//        config.addAllowedMethod("*");
+//        source.registerCorsConfiguration("/**", config);
+//        return new CorsFilter(source);
+//    }
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

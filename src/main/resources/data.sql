@@ -11,12 +11,15 @@ INSERT INTO side_effect(short_description, description, frequency, vaccine_id) V
 
 INSERT INTO user(id, username, password, first_name, last_name) VALUES
 (1, 'admin', '$2a$10$7L7a0r29iWOtBG/ASaqd0uwwb1oJYwwNh6.27P9sHOhDuju0b8wce', 'Admin', 'Admirovic'),
-(2, 'user', '$2a$10$EsML0xcdPH5TaQhnPDRohuql9STvgvHA9lF5sMA.VCgO6XCQMzyDy', 'Userito', 'Usmehmetovic');
+(2, 'user', '$2a$10$EsML0xcdPH5TaQhnPDRohuql9STvgvHA9lF5sMA.VCgO6XCQMzyDy', 'Userito', 'Usmehmetovic'),
+(3, 'deleter', '$2a$10$RaTsZ6SLhuB/gBbwNXApCu5nLJDVjTQrGv/q9SyGl3Zmi8SEIlNxa', 'Deleteruny', 'Deletovic');
 
 INSERT INTO authority(id, name) VALUES
 (1, 'ROLE_ADMIN'),
-(2, 'ROLE_USER');
+(2, 'ROLE_USER'),
+(3, 'ROLE_DELETER');
 
 INSERT INTO user_authority(user_id, authority_id) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(3, 3);

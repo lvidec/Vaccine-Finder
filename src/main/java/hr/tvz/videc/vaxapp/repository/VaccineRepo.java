@@ -12,7 +12,8 @@ public class VaccineRepo implements VaccineRepository {
 
     private List<Vaccine> vaccineList = new LinkedList<>(Arrays.asList(
             new Vaccine("Pfizer-BioNTech", "Pfizer, Inc., and BioNTech", "mRNA", 2, 300),
-            new Vaccine("Moderna", "ModernaTX, Inc.", "mRNA", 2, 2000)
+            new Vaccine("Moderna", "ModernaTX, Inc.", "mRNA", 2, 20000),
+            new Vaccine("vakcinaZaMoze", "Mozi", "mRNA", 1, 100000)
     ));
 
     @Override

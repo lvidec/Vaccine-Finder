@@ -5,6 +5,7 @@ import hr.tvz.videc.vaxapp.model.Vaccine.VaccineDTO;
 import hr.tvz.videc.vaxapp.service.VaccineService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,7 +22,6 @@ public class VaccineController {
         this.vaccineService = vaccineService;
     }
 
-//    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping
     public List<VaccineDTO> getAllVaccines(){
         return vaccineService.findAll();
@@ -61,6 +61,7 @@ public class VaccineController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Secured({"ROLE_ADMIN", "ROLE_DELETER"})
     @DeleteMapping("/{researchName}")
     public void deleteVaccine(@PathVariable String researchName){
         vaccineService.deleteVaccine(researchName);
