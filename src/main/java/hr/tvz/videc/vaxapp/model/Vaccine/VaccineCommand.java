@@ -31,6 +31,7 @@ public class VaccineCommand {
         this.availableDoses = availableDoses;
     }
 
+
     public String getResearchName() { return researchName; }
 
     public void setResearchName(String researchName) { this.researchName = researchName; }

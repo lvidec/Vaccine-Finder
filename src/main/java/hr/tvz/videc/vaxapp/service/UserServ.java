@@ -23,7 +23,7 @@ public class UserServ implements UserService{
         return this.userRepository.findByUsername(username).map(this::mapUserToUserDTO).orElseThrow(EntityNotFoundException::new);
     }
 
-    private UserDTO mapUserToUserDTO(User user){
+    public UserDTO mapUserToUserDTO(User user){
         return new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet()));
     }
 

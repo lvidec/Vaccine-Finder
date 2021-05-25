@@ -11,5 +11,5 @@ public interface SideEffectService {
 
     List<SideEffect> findByVaccine_ResearchName(String researchName);
 
-    List<SideEffect> findVaccinesByNumberOfAvailableDoses(long freqMin, long freqMax);
+    List<SideEffect> findByFrequencyGreaterThanEqualAndFrequencyLessThanEqual(long freqMin, long freqMax);
 }

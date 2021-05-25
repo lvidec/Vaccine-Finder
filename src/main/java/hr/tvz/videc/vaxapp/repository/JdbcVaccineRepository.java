@@ -1,8 +1,7 @@
-package hr.tvz.videc.vaxapp.jdbc;
+package hr.tvz.videc.vaxapp.repository;
 
 import hr.tvz.videc.vaxapp.model.Vaccine.VaccineCommand;
 import hr.tvz.videc.vaxapp.model.Vaccine.Vaccine;
-import hr.tvz.videc.vaxapp.repository.VaccineRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -31,16 +30,6 @@ public class JdbcVaccineRepository implements VaccineRepository {
                 this::mapRowToVaccine);
     }
 
-    private Vaccine mapRowToVaccine(ResultSet rs, int i) throws SQLException {
-        Vaccine vaccine = new Vaccine();
-        vaccine.setResearchName(rs.getString("research_name"));
-        vaccine.setManufacturerName(rs.getString("manufacturer_name"));
-        vaccine.setType(rs.getString("type"));
-        vaccine.setNumberOfShots(rs.getInt("number_of_shots"));
-        vaccine.setAvailableDoses(rs.getLong("available_doses"));
-        return vaccine;
-    }
-
     @Override
     public Optional<Vaccine> findVaccineByResearchName(String researchName) {
         return jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine where research_name = ?",
@@ -51,6 +40,12 @@ public class JdbcVaccineRepository implements VaccineRepository {
     public List<Vaccine> findVaccineByAvailableDoses(long requestedAvailableDoses) {
         return new ArrayList<>(jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine where available_doses = ?",
                 this::mapRowToVaccine, requestedAvailableDoses));
+    }
+
+    @Override
+    public List<Vaccine> findVaccinesByNumberOfAvailableDoses(long availableDosesMin, long availableDosesMax) {
+        return new ArrayList<>(jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine where available_doses >= ? and available_doses <= ?",
+                this::mapRowToVaccine, availableDosesMin, availableDosesMax));
     }
 
     @Override
@@ -72,24 +67,32 @@ public class JdbcVaccineRepository implements VaccineRepository {
         return vaccineCommand.getResearchName();
     }
 
-    @Override
-    public Optional<Vaccine> updateVaccine(String research_name, VaccineCommand vaccineCommand) {
-        Optional<Vaccine> vaccineToRemove = findAll().stream().filter( x -> x.getResearchName().equals(research_name)).findFirst();
-        if (vaccineToRemove.isEmpty()) {
-            return Optional.empty();
-        }
-        addVaccineDetails(mapVaccineToCommand(vaccineToRemove.get()));
-        return vaccineToRemove;
+    private Vaccine mapRowToVaccine(ResultSet rs, int i) throws SQLException {
+        Vaccine vaccine = new Vaccine();
+        vaccine.setResearchName(rs.getString("research_name"));
+        vaccine.setManufacturerName(rs.getString("manufacturer_name"));
+        vaccine.setType(rs.getString("type"));
+        vaccine.setNumberOfShots(rs.getInt("number_of_shots"));
+        vaccine.setAvailableDoses(rs.getLong("available_doses"));
+        return vaccine;
     }
 
     @Override
-    public List<Vaccine> findVaccinesByNumberOfAvailableDoses(long availableDosesMin, long availableDosesMax) {
-        return new ArrayList<>(jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine where available_doses >= ? and available_doses <= ?",
-                this::mapRowToVaccine, availableDosesMin, availableDosesMax));
+    public Optional<Vaccine> updateVaccine(String research_name, VaccineCommand vaccineCommand) {
+        Optional<Vaccine> vaccineToRemove = findVaccineByResearchName(research_name);
+        if (vaccineToRemove.isEmpty()) {
+            return Optional.empty();
+        }
+        deleteVaccine(research_name);
+        addVaccineDetails(vaccineCommand);
+        return Optional.of(mapCommandToVaccine(vaccineCommand));
     }
 
     @Override
     public void deleteVaccine(String research_name) {
+//        Optional<Vaccine> targetVaccine = findVaccineByResearchName(research_name);
+//        Long id = targetVaccine.get().getId();
+//        jdbc.update("DELETE FROM side_effect WHERE vaccine_id = ?", id);
         jdbc.update("DELETE FROM vaccine WHERE research_name LIKE ?", research_name);
     }
 

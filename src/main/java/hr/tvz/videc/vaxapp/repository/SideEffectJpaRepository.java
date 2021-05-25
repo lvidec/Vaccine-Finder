@@ -14,6 +14,6 @@ public interface SideEffectJpaRepository extends JpaRepository<SideEffect, Long>
 
     List<SideEffect> findByVaccine_ResearchName(String researchName);
 
-    List<SideEffect> findByFrequencyGreaterThanEqualAndFrequencyLessThanEqual(float frequency, float frequency2);
+    List<SideEffect> findByFrequencyGreaterThanEqualAndFrequencyLessThanEqual(float freqMin, float freqMax);
 
 }

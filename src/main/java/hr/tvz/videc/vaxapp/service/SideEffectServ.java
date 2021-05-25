@@ -23,6 +23,7 @@ public class SideEffectServ implements SideEffectService {
 
     @Override
     public List<SideEffect> findAll() {
+        System.out.println("Getting data from mock junit " + sideEffectJpaRepository.findAll());
         return sideEffectJpaRepository.findAll();
     }
 
@@ -32,7 +33,9 @@ public class SideEffectServ implements SideEffectService {
     }
 
     @Override
-    public List<SideEffect> findVaccinesByNumberOfAvailableDoses(long freqMin, long freqMax) {
+    public List<SideEffect> findByFrequencyGreaterThanEqualAndFrequencyLessThanEqual(long freqMin, long freqMax) {
         return sideEffectJpaRepository.findByFrequencyGreaterThanEqualAndFrequencyLessThanEqual(freqMin, freqMax);
     }
+
+
 }

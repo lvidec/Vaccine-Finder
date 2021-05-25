@@ -1,8 +1,6 @@
 package hr.tvz.videc.vaxapp.controller;
 
 import hr.tvz.videc.vaxapp.model.SideEffect.SideEffect;
-import hr.tvz.videc.vaxapp.model.Vaccine.VaccineDTO;
-import hr.tvz.videc.vaxapp.repository.SideEffectJpaRepository;
 import hr.tvz.videc.vaxapp.service.SideEffectService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +29,8 @@ public class SideEffectController {
     }
 
     @GetMapping("/between/{min}/{max}")
-    public List<SideEffect> getVaccinesByNumberOfAvailableDoses(@PathVariable("min") final long freqMin, @PathVariable("max") final long freqMax){
-        return sideEffectService.findVaccinesByNumberOfAvailableDoses(freqMin, freqMax);
+    public List<SideEffect> findByFrequencyGreaterThanEqualAndFrequencyLessThanEqual(@PathVariable("min") final long freqMin, @PathVariable("max") final long freqMax){
+        return sideEffectService.findByFrequencyGreaterThanEqualAndFrequencyLessThanEqual(freqMin, freqMax);
     }
 
 

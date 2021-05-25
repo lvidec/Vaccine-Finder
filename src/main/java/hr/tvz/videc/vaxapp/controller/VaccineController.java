@@ -32,9 +32,9 @@ public class VaccineController {
         return vaccineService.findVaccineByResearchName(researchName);
     }
 
-    @GetMapping(params = "AvailableDosses")
-    public List<VaccineDTO> getByAvailableDosses(@RequestParam final long availableDosses){
-        return vaccineService.findVaccineByAvailableDoses(availableDosses);
+    @GetMapping(params = "availableDoses")
+    public List<VaccineDTO> getByAvailableDosses(@RequestParam final long availableDoses){
+        return vaccineService.findVaccineByAvailableDoses(availableDoses);
     }
 
     @GetMapping("/between")
@@ -61,7 +61,7 @@ public class VaccineController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Secured({"ROLE_ADMIN", "ROLE_DELETER"})
+//    @Secured({"ROLE_ADMIN", "ROLE_DELETER"})
     @DeleteMapping("/{researchName}")
     public void deleteVaccine(@PathVariable String researchName){
         vaccineService.deleteVaccine(researchName);
