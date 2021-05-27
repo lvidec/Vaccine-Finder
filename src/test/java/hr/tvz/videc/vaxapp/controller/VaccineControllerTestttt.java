@@ -1,7 +1,6 @@
 package hr.tvz.videc.vaxapp.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.anyString;
@@ -38,12 +37,33 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @ContextConfiguration(classes = {VaccineController.class})
 @ExtendWith(SpringExtension.class)
-public class VaccineControllerTest {
+public class VaccineControllerTestttt {
     @Autowired
     private VaccineController vaccineController;
 
     @MockBean
     private VaccineService vaccineService;
+
+    @Test
+    //Test je dobro napisan no jdbc dependenciji me zafrkavaju nesto (ili cinjenica da mi je key unutra addVaccineDetails metode String(research_name), makar radi u postmanu i opcenito savrseno
+    public void testAddVaccine() {
+        JdbcTemplate jdbcTemplate = mock(JdbcTemplate.class);
+        when(jdbcTemplate.query(anyString(), (org.springframework.jdbc.core.RowMapper<Object>) any(), (Object[]) any()))
+                .thenReturn(new ArrayList<Object>());
+        VaccineController vaccineController = new VaccineController(
+                new VaccineServ(new JdbcVaccineRepository(jdbcTemplate)));
+        ResponseEntity<VaccineDTO> actualUpdateVaccineResult = vaccineController.addVaccine(
+                new VaccineCommand("", "", "Type", 100, 2L));
+        assertEquals(HttpStatus.CONFLICT, actualUpdateVaccineResult.getStatusCode());
+        assertFalse(actualUpdateVaccineResult.hasBody());
+        VaccineDTO body = actualUpdateVaccineResult.getBody();
+        assertNotEquals("", body.getManufacturerName());
+        assertNotEquals(2L, body.getAvailableDoses().longValue());
+        assertNotEquals("Type", body.getType());
+        assertNotEquals(100, body.getNumberOfShots());
+        assertNotEquals("", body.getResearchName());
+        verify(jdbcTemplate).query(anyString(), (org.springframework.jdbc.core.RowMapper<Object>) any(), (Object[]) any());
+    }
 
     @Test
     public void testUpdateVaccine2() throws DataAccessException {

@@ -79,15 +79,15 @@ public class JdbcVaccineRepositoryTest {
 
 //    @Test
 //    @DirtiesContext
-//  MOJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
-//    public void testAddVaccine(){
-//        jdbcVaccineRepository.addVaccine(new VaccineCommand("mockResearchName", "mockManufacturerName", "mockMrna", 2, 10));
+////  MOJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+//    public void testAddVaccineMoj(){
+//        jdbcVaccineRepository.addVaccine(new VaccineCommand("mockResearchName", "mockManufacturerName", "mRna", 2, 10000));
 //
 //        List<Vaccine> vaccineList = jdbcVaccineRepository.findAll();
 //        Assertions.assertNotNull(vaccineList);
 //        Assertions.assertEquals(vaccineList.size(), 4);
 //    }
-
+//
 //    @Test
 //    public void testAddVaccine() {
 //        VaccineCommand vaccineCommand = mock(VaccineCommand.class);
@@ -104,17 +104,17 @@ public class JdbcVaccineRepositoryTest {
 //        verify(vaccineCommand).getResearchName();
 //    }
 
-//    @Test
-//    public void testUpdateVaccine() throws DataAccessException {
-//        when(
-//                this.jdbcTemplate.query(anyString(), (org.springframework.jdbc.core.RowMapper<Object>) any(), (Object[]) any()))
-//                .thenReturn(new ArrayList<Object>());
-//        assertFalse(this.jdbcVaccineRepository
-//                .updateVaccine("Research name", new VaccineCommand("Research Name", "Manufacturer Name", "Type", 10, 1L))
-//                .isPresent());
-//        verify(this.jdbcTemplate).query(anyString(), (org.springframework.jdbc.core.RowMapper<Object>) any(),
-//                (Object[]) any());
-//    }
+    @Test
+    public void testUpdateVaccine() throws DataAccessException {
+        when(
+                this.jdbcTemplate.query(anyString(), (org.springframework.jdbc.core.RowMapper<Object>) any(), (Object[]) any()))
+                .thenReturn(new ArrayList<Object>());
+        assertFalse(this.jdbcVaccineRepository
+                .updateVaccine("Research name", new VaccineCommand("Research Name", "Manufacturer Name", "Type", 10, 1L))
+                .isPresent());
+        verify(this.jdbcTemplate).query(anyString(), (org.springframework.jdbc.core.RowMapper<Object>) any(),
+                (Object[]) any());
+    }
 
 //    @Test
 //    public void testUpdateVaccine2() throws DataAccessException {
