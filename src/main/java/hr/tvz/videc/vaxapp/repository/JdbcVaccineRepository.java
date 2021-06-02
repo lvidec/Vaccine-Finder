@@ -38,7 +38,7 @@ public class JdbcVaccineRepository implements VaccineRepository {
 
     @Override
     public List<Vaccine> findVaccineByAvailableDoses(long requestedAvailableDoses) {
-        return new ArrayList<>(jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine where available_doses = ?",
+        return new ArrayList<>(jdbc.query("select research_name, manufacturer_name, type, number_of_shots, available_doses from vaccine where available_doses > ?",
                 this::mapRowToVaccine, requestedAvailableDoses));
     }
 

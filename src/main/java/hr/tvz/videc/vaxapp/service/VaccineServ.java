@@ -4,6 +4,10 @@ import hr.tvz.videc.vaxapp.model.Vaccine.VaccineCommand;
 import hr.tvz.videc.vaxapp.model.Vaccine.Vaccine;
 import hr.tvz.videc.vaxapp.model.Vaccine.VaccineDTO;
 import hr.tvz.videc.vaxapp.repository.VaccineRepository;
+import hr.tvz.videc.vaxapp.scheduler.SchedulerService;
+import hr.tvz.videc.vaxapp.scheduler.TimerInfo;
+import hr.tvz.videc.vaxapp.scheduler.CheckIfAvailableJob;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -15,10 +19,25 @@ import java.util.stream.Collectors;
 public class VaccineServ implements VaccineService, Serializable {
 
     private final VaccineRepository vaccineRepository;
+    private final SchedulerService schedulerService;
 
-    public VaccineServ(VaccineRepository vaccineRepository) {
+    @Autowired
+    public VaccineServ(VaccineRepository vaccineRepository, final SchedulerService schedulerService) {
         this.vaccineRepository = vaccineRepository;
+        this.schedulerService = schedulerService;
     }
+
+    @Override
+    public void runJob(){
+        final TimerInfo info = new TimerInfo();
+        info.setTotalFireCount(5);
+        info.setRepeatIntervalMs(2000);
+        info.setInitialOffsetMs(1000);
+        info.setCallbackData("My callback data");
+
+        schedulerService.schedule(CheckIfAvailableJob.class, info);
+    }
+
 
     @Override
     public List<VaccineDTO> findAll() {

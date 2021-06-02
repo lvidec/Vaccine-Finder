@@ -3,6 +3,7 @@ package hr.tvz.videc.vaxapp.controller;
 import hr.tvz.videc.vaxapp.model.Vaccine.VaccineCommand;
 import hr.tvz.videc.vaxapp.model.Vaccine.VaccineDTO;
 import hr.tvz.videc.vaxapp.service.VaccineService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -18,9 +19,11 @@ public class VaccineController {
 
     private final VaccineService vaccineService;
 
+    @Autowired
     public VaccineController(VaccineService vaccineService) {
         this.vaccineService = vaccineService;
     }
+
 
     @GetMapping
     public List<VaccineDTO> getAllVaccines(){
