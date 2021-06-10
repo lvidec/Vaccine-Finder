@@ -3,6 +3,7 @@ package hr.tvz.videc.vaxapp;
 import hr.tvz.videc.vaxapp.scheduler.CheckIfAvailableJob;
 import hr.tvz.videc.vaxapp.scheduler.SchedulerService;
 import hr.tvz.videc.vaxapp.scheduler.TimerInfo;
+import hr.tvz.videc.vaxapp.scheduler.TimerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,5 +29,7 @@ public class VaxappApplication implements CommandLineRunner {
         info.setInitialOffsetMs(1000);
 
         schedulerService.schedule(CheckIfAvailableJob.class, info);
+
+        TimerUtil.triggerOnMidnightEveryWeekday(CheckIfAvailableJob.class);
     }
 }

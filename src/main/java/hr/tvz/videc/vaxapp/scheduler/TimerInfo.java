@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class TimerInfo /*implements Serializable*/ {
     private int totalFireCount;
+    private int remainingFireCount;
     private boolean runForever;
     private long repeatIntervalMs;
     private long initialOffsetMs;
@@ -47,5 +48,13 @@ public class TimerInfo /*implements Serializable*/ {
 
     public void setCallbackData(String callbackData) {
         this.callbackData = callbackData;
+    }
+
+    public int getRemainingFireCount() {
+        return remainingFireCount;
+    }
+
+    public void setRemainingFireCount(int remainingFireCount) {
+        this.remainingFireCount = remainingFireCount;
     }
 }
