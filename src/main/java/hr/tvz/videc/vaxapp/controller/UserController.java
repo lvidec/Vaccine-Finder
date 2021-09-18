@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     private DomainUserDetailsService domainUserDetailsService;
@@ -26,6 +27,11 @@ public class UserController {
     public UserController(DomainUserDetailsService domainUserDetailsService, UserService userService){
         this.domainUserDetailsService = domainUserDetailsService;
         this.userService = userService;
+    }
+
+    @GetMapping
+    public List<UserDTO> getAllUsers(){
+        return userService.findAllUsers();
     }
 
     @GetMapping("/current-user")

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("vaccine")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 public class VaccineController {
 
     private final VaccineService vaccineService;

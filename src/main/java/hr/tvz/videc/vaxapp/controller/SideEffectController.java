@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("side-effect")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 public class SideEffectController {
 
     private final SideEffectService sideEffectService;

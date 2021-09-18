@@ -7,6 +7,7 @@ import hr.tvz.videc.vaxapp.repository.UserJpaRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +22,12 @@ public class UserServ implements UserService{
     @Override
     public UserDTO findByUsername(String username) {
         return this.userRepository.findByUsername(username).map(this::mapUserToUserDTO).orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public List<UserDTO> findAllUsers(){
+        return this.userRepository.findAll().stream().map(this::mapUserToUserDTO).collect(Collectors.toList());
+
     }
 
     public UserDTO mapUserToUserDTO(User user){

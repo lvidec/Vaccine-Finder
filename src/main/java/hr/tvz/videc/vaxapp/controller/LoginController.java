@@ -1,4 +1,4 @@
-package hr.tvz.videc.vaxapp.security.web;
+package hr.tvz.videc.vaxapp.controller;
 
 import hr.tvz.videc.vaxapp.model.Login.JwtToken;
 import hr.tvz.videc.vaxapp.model.Login.LoginDTO;
@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 public class LoginController {
 
     private final TokenProvider tokenProvider;
@@ -29,7 +29,7 @@ public class LoginController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<JwtToken> authenticate(@Valid @RequestBody LoginDTO login) {
+    public ResponseEntity<ReturningObject> authenticate(@Valid @RequestBody LoginDTO login) {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken( login.getUsername(), login.getPassword() );
 
@@ -42,9 +42,46 @@ public class LoginController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
-        return new ResponseEntity<>(new JwtToken(jwt), httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(new ReturningObject(new JwtToken(jwt), login.getUsername(), login.getPassword()), httpHeaders, HttpStatus.OK);
     }
 
+
+    static class ReturningObject{
+        private JwtToken jwtToken;
+        private String username;
+        private String password;
+
+        public ReturningObject(JwtToken jwtToken, String username, String password) {
+            this.jwtToken = jwtToken;
+            this.username = username;
+            this.password = password;
+        }
+
+        public JwtToken getJwtToken() {
+            return jwtToken;
+        }
+
+        public void setJwtToken(JwtToken jwtToken) {
+            this.jwtToken = jwtToken;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+    }
 
 //    /**
 //     * Return jwt token in body because Angular has problems with parsing plain string response entity

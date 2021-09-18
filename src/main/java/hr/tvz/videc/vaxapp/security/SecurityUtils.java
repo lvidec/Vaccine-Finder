@@ -11,8 +11,7 @@ import java.util.stream.Stream;
 
 public final class SecurityUtils {
 
-    private SecurityUtils() {
-    }
+    private SecurityUtils() {}
 
     public static Optional<String> getCurrentUserUsername() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
